@@ -3,7 +3,7 @@ from cloudinary.models import CloudinaryField
 
 
 class Booking(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, null=True, blank=True)
     email = models.CharField(max_length=35)
     subject = models.TextField(default='')
     message = models.TextField()
@@ -14,7 +14,7 @@ class Booking(models.Model):
 
 
 class Table(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=30, null=True, blank=True)
     email = models.EmailField(max_length=35)
     date = models.CharField(max_length=200)
     time = models.CharField(max_length=12, default='')

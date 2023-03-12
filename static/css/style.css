@@ -1,0 +1,51 @@
+/* Body */
+
+body {
+    background-color: #3d3d3d;
+}
+
+/* Navigation */
+
+.navbar {
+    height: 100px;
+}
+
+.navbar-brand {
+    color: yellow;
+    font-size: 30px;
+}
+
+.nav-link {
+    color: white;
+    font-size: 20px;
+}
+/* Main image */
+#main_image {
+    background-attachment: fixed;
+}
+/* ABout us */
+.intro-image {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.about-us {
+    background-color: darkgray;
+    box-sizing: border-box;
+}
+
+.section-heading {
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.section-heading .section-heading-lower {
+    display: block;
+    margin-top: 5px;
+}
+
+.section-heading .section-heading-upper {
+    margin-top: 5px;
+}
+

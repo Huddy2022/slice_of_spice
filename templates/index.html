@@ -1,12 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello World!</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<section id="main_image">
+    <div class="container-fluid g-0">
+        <div class="row g-0">
+            <img src="https://res.cloudinary.com/dfay05cnf/image/upload/v1678628364/Slice%20of%20Spice/Table_1_n8d26y.jpg"
+                class="img-fluid" alt="Restaurant">
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container text-center">
+        <div class="row">
+            <div class="about-us col">
+                <h2 class="section-heading">
+                    <span class="section-heading-upper">Fresh Food</span>
+                    <span class="section-heading-lower">To spice your tastebuds</span>
+                </h2>
+                <p>Adam, along with his partner Kathleen, have always wanted to share their culernary visons of food and
+                    we are excited to welcome you to The Slice of Spice. Our lovely restaurant hosts a modern bar,
+                    selling cocktails, an extensive fine wine list and draught beers. Enjoy fine dining in our intimate
+                    restaurant with outstanding food. All our food is cooked with fresh local ingredients and offers a
+                    spice taste from
+                    around the world!</p>
+            </div>
+            <div class="col">
+                <div>
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded"
+                        src="https://res.cloudinary.com/dfay05cnf/image/upload/v1678637757/Slice%20of%20Spice/food_prep_pfz5yy.jpg"
+                        alt="food_prep" /></div>
+            </div>
+        </div>
+</section>
+{% endblock %}
