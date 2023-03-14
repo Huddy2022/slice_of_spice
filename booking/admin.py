@@ -1,26 +1,33 @@
 from django.contrib import admin
-from .models import Booking, Table, Cancellation
+from .models import Customer, Booking, Table, Cancellation
+
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'phone')
+    search_fields = ['name', 'phone']
+    list_filter = ('name', 'phone')
 
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'date')
-    search_fields = ['name', 'date']
-    list_filter = ('name', 'date')
+    list_display = ('party', 'table', 'booking_date')
+    search_fields = ['party', 'booking_date']
+    list_filter = ('party', 'booking_date')
 
 
 @admin.register(Table)
-class BookingAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'date')
-    search_fields = ['name', 'date']
-    list_filter = ('name', 'date')
+class TableAdmin(admin.ModelAdmin):
+    list_display = ('booking', 'number_of_people')
+    search_fields = ['booking', 'number_of_people']
+    list_filter = ('booking', 'number_of_people')
 
 
 @admin.register(Cancellation)
 class CancellationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email')
-    search_fields = ['name', 'email']
-    list_filter = ('name', 'email')
+    list_display = ('user', 'approved')
+    search_fields = ['user', 'approved']
+    list_filter = ('user', 'approved')
     actions = ['approve_cancellation']
 
     def approve_cancellation(self, request, queryset):

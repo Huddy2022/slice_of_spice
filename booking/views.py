@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Booking, Table, Cancellation
+from .models import Customer, Booking, Cancellation, Table
 
 
 def index(request):
