@@ -23,7 +23,7 @@ body {
 #main_image {
     background-attachment: fixed;
 }
-/* ABout us */
+/* About us */
 .intro-image {
     max-width: 100%;
     height: auto;
@@ -48,4 +48,7 @@ body {
 .section-heading .section-heading-upper {
     margin-top: 5px;
 }
-
+/* Footer */
+.footer {
+    color: white;
+}
