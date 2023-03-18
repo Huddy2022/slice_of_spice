@@ -22,29 +22,32 @@
 
 <body>
     <!--Navigation-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/home">Slice of Spice</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                    <a class="nav-link" href="/menu">Menu</a>
-                    <a class="nav-link" href="/reservations">Book a Table</a>
-                    <a class="nav-link" href="#contact">Contact</a>
-                    <a class="nav-link" href="/gallery">Gallery</a>
-                    {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                    {% else %}
-                    <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
-                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                    {% endif %}
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top navbar bg-dark" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/home">Slice of Spice</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                        <a class="nav-link" href="/menu">Menu</a>
+                        <a class="nav-link" href="/reservations">Book a Table</a>
+                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="/gallery">Gallery</a>
+                        {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
+    </div>
     </nav>
     {% block content %}
     <!--Content goes here-->
@@ -68,7 +71,8 @@
                 <div class="col"><a class="btn btn-social" href="https://www.facebook.com" target="_blank"><i
                             class="fa-brands fa-facebook"></i></a><a class="btn btn-social"
                         href="https://www.instagram.com" target="_blank"><i
-                            class="fa-brands fa-square-instagram"></i></a><br><i class="fa-solid fa-copyright"> <span>Hudson Web creations</span></i>
+                            class="fa-brands fa-square-instagram"></i></a><br><i class="fa-solid fa-copyright"></i> 2023
+                    Hudson Web Creations
                 </div>
             </div>
         </div>

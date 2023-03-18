@@ -1,1 +1,24 @@
 {% extends "base.html" %}
+
+{% block content %}
+<section class="reservation-image">
+    <div class="container-fluid">
+        <img src="https://res.cloudinary.com/dfay05cnf/image/upload/v1679159391/Slice%20of%20Spice/table_menu_v3431g.jpg"
+            class="img-fluid rounded-start" alt="table_menu">
+    </div>
+</section>
+<section class="reservation-form">
+    <form>
+        <fieldset disabled>
+            <legend>BOOK YOUR TABLE</legend>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label"></label>
+                <input type="text" id="disabledTextInput" class="form-control" placeholder="Name">
+                <label for="disabledTextInput" class="form-label"></label>
+                <input type="text" id="disabledTextInput" class="form-control" placeholder="Email address">            
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+</section>
+{% endblock %}

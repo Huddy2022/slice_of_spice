@@ -62,7 +62,5 @@ body {
 .btn-social :hover{
     color: yellow;
 }
+/* reservation */
 
-.btn-social span {
-    text-transform: lowercase;
-}
