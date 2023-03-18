@@ -51,4 +51,18 @@ body {
 /* Footer */
 .footer {
     color: white;
+    border-top: solid;
+}
+
+.btn-social {
+    color: white;
+    font-size: 30px;
+}
+
+.btn-social :hover{
+    color: yellow;
+}
+
+.btn-social span {
+    text-transform: lowercase;
 }
