@@ -8,17 +8,41 @@
     </div>
 </section>
 <section class="reservation-form">
-    <form>
-        <fieldset disabled>
-            <legend>BOOK YOUR TABLE</legend>
-            <div class="mb-3">
-                <label for="disabledTextInput" class="form-label"></label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Name">
-                <label for="disabledTextInput" class="form-label"></label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Email address">            
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </fieldset>
-    </form>
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-8 col-md-4 text-center">
+            <form>
+                <h2>BOOK YOUR TABLE</h2>
+                    <div class="mb-3">
+                        <label for="name" class="form-label"></label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" data-rule="minlen:4"
+                        data-msg="Please enter at least 4 chars">
+                        <label for="email" class="form-label"></label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address" data-rule="email"
+                        data-msg="Please enter a valid email">
+                        <label for="phone" class="form-label"></label>
+                        <input type="text" name="phone "id="phone" class="form-control" placeholder="Phone" data-rule="required"
+                        data-msg="This field is required">
+                        <label for="date" class="form-label"></label>
+                        <input type="date" name="date" id="date" class="form-control" placeholder="Date" data-rule="required"
+                        data-msg="This field is required">
+                        <label for="time" class="form-label"></label>
+                        <input type="time" name="time" id="time" min="12:00" max="22:00" step="900" class="form-control" placeholder="Time" data-rule="required"
+                        data-msg="This field is required">
+                        <label for="people" class="form-label"></label>
+                        <input type="text" name="people" id="people" class="form-control" placeholder="No. of People" data-rule="required"
+                        data-msg="This field is required">
+                        <br>
+                        <div class="form-label">
+                        <textarea name="message" rows="5" cols="5" class="form-control" placeholder="Message"></textarea>
+                    </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Book a Table</button>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
 </section>
 {% endblock %}

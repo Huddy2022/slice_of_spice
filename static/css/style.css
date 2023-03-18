@@ -11,7 +11,7 @@ body {
 }
 
 .navbar-brand {
-    color: yellow;
+    color: #ffd500;
     font-size: 30px;
 }
 
@@ -54,6 +54,10 @@ body {
     border-top: solid;
 }
 
+.footer h3{
+    color: #ffd500;
+}
+
 .btn-social {
     color: white;
     font-size: 30px;
@@ -63,4 +67,9 @@ body {
     color: yellow;
 }
 /* reservation */
-
+.reservation-form {
+    margin-bottom: 10px;
+}
+.reservation-form h2{
+    color: #ffd500;
+}
