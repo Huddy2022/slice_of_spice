@@ -19,10 +19,12 @@ body {
     color: white;
     font-size: 20px;
 }
+
 /* Main image */
 #main_image {
     background-attachment: fixed;
 }
+
 /* About us */
 .intro-image {
     max-width: 100%;
@@ -48,13 +50,14 @@ body {
 .section-heading .section-heading-upper {
     margin-top: 5px;
 }
+
 /* Footer */
 .footer {
     color: white;
     border-top: solid;
 }
 
-.footer h3{
+.footer h3 {
     color: #ffd500;
 }
 
@@ -63,14 +66,16 @@ body {
     font-size: 30px;
 }
 
-.btn-social :hover{
+.btn-social :hover {
     color: yellow;
 }
+
 /* reservation */
 .reservation-form {
     margin-bottom: 10px;
 }
-.reservation-form h2{
+
+.reservation-form h2 {
     color: #ffd500;
 }
 
@@ -80,7 +85,16 @@ body {
 }
 
 /* menu */
-.menu {
+#background-image {
+    background-image: url("https://res.cloudinary.com/dfay05cnf/image/upload/v1679230586/Slice%20of%20Spice/fire_epkyft.jpg");
+    background-size: contain;
+}
+.menu-title {
     margin-top: 100px;
+    color: #ffd500;
+}
+
+.menu {
     color: white;
+    margin-bottom: 20px;
 }
