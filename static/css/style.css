@@ -48,11 +48,13 @@ body p,span {
 .section-heading {
     text-transform: uppercase;
     margin-top: 10px;
+    text-decoration: underline;
 }
 
 .section-heading .section-heading-lower {
     display: block;
     margin-top: 5px;
+    text-decoration: underline;
 }
 
 .section-heading .section-heading-upper {
@@ -83,13 +85,17 @@ body p,span {
     margin-bottom: 10px;
 }
 
+.reservation-image {
+    margin-top: 100px;
+}
+
 .reservation-form h2 {
     color: #ffd500;
 }
 
 /* gallery */
 #gallery {
-    margin-top: 100px;
+    margin-top: 150px;
 }
 
 /* menu */
@@ -119,5 +125,19 @@ body p,span {
 @media screen and (max-width: 600px) {
     .about-us {
         font-size: xx-small;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .nav {
+        color: #ffd500;
+        background-color: black;
+        text-decoration: underline;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .about-us {
+        font-size: x-large;
     }
 }
