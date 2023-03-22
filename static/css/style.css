@@ -141,3 +141,15 @@ body p,span {
         font-size: x-large;
     }
 }
+
+/* login/logout/signup */
+
+.account {
+    margin-top: 100px;
+    background-color: black;
+    color: #ffd500;
+}
+
+.btn-signup {
+    background-color: #ffd500;
+}
