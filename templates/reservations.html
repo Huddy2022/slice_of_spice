@@ -12,7 +12,8 @@
         <div class="col">
         </div>
         <div class="col-8 col-md-4 text-center">
-            <form>
+            <form action="" method="post" role="form">
+                {% csrf_token %}
                 <h2>BOOK YOUR TABLE</h2>
                     <div class="mb-3">
                         <label for="name" class="form-label"></label>
