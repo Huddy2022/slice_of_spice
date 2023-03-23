@@ -18,9 +18,7 @@ class BookingAdmin(admin.ModelAdmin):
 
 @admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
-    list_display = ('booking', 'number_of_people')
-    search_fields = ['booking', 'number_of_people']
-    list_filter = ('booking', 'number_of_people')
+    search_fields = ['number_of_people']
 
 
 @admin.register(Cancellation)

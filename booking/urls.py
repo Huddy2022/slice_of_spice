@@ -3,7 +3,7 @@ from django.urls import path, include
 from booking import views
 
 urlpatterns = [
-    path('', views.index, name='Home'),
+    path('', views.index, name='home'),
     path('home', views.home, name='home'),
     path('menu', views.menu, name='menu'),
     path('reservations', views.reservations, name='reservations'),
