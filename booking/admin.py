@@ -1,19 +1,12 @@
 from django.contrib import admin
-from .models import Customer, Booking, Table, Cancellation
-
-
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone')
-    search_fields = ['name', 'phone']
-    list_filter = ('name', 'phone')
+from .models import Booking, Table, Cancellation
 
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('party', 'table', 'booking_date')
-    search_fields = ['party', 'booking_date']
-    list_filter = ('party', 'booking_date')
+    list_display = ('name', 'email', 'phone', 'table', 'booking_date')
+    search_fields = ['name', 'booking_date']
+    list_filter = ('name', 'booking_date')
 
 
 @admin.register(Table)

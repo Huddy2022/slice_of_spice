@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.shortcuts import render
-from .models import Customer, Booking, Cancellation, Table
+from .models import Booking, Cancellation, Table
 
 
 def index(request):
@@ -18,11 +18,13 @@ def menu(request):
 
 def reservations(request):
     if request.method == "POST":
-        party = request.POST.get('party')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
         booking_date = request.POST.get('booking_date')
         booking_time = request.POST.get('booking_time')
 
-        reservations = Booking(party=party, booking_date=booking_date, booking_time=booking_time)
+        reservations = Booking(name=name, email=email, phone=phone, booking_date=booking_date, booking_time=booking_time)
 
         reservations.save()
 
