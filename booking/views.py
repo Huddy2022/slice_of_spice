@@ -18,13 +18,16 @@ def menu(request):
 
 def reservations(request):
     if request.method == "POST":
+        print(request.POST)
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
-        booking_date = request.POST.get('booking_date')
-        booking_time = request.POST.get('booking_time')
+        booking_date = request.POST.get('date')
+        booking_time = request.POST.get('time')
+        table = request.POST.get('people')
+        print(phone)
 
-        reservations = Booking(name=name, email=email, phone=phone, booking_date=booking_date, booking_time=booking_time)
+        reservations = Booking(name=name, email=email, phone=phone, booking_date=booking_date, booking_time=booking_time, table_id = table)
 
         reservations.save()
 

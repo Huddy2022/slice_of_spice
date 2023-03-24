@@ -7,8 +7,8 @@ class Booking(models.Model):
     email = models.EmailField(max_length=40, blank=True)
     phone = models.CharField(max_length=12, null=True, blank=True)
     table = models.ForeignKey('Table', on_delete=models.CASCADE)
-    booking_date = models.DateField(null=True, blank=True)
-    booking_time = models.TimeField(null=True, blank=True)
+    booking_date = models.DateField()
+    booking_time = models.TimeField()
 
     def __str__(self):
         return self.name
