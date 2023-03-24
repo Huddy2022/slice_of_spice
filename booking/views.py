@@ -25,9 +25,8 @@ def reservations(request):
         booking_date = request.POST.get('date')
         booking_time = request.POST.get('time')
         table = request.POST.get('people')
-        print(phone)
 
-        reservations = Booking(name=name, email=email, phone=phone, booking_date=booking_date, booking_time=booking_time, table_id = table)
+        reservations = Booking(name=name, email=email, phone=phone, booking_date=booking_date, booking_time=booking_time, table_id=table)
 
         reservations.save()
 
