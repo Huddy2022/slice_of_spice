@@ -16,7 +16,7 @@ class Booking(models.Model):
 
 class Table(models.Model):
     number_of_people = models.IntegerField()
-    table_number = models.CharField(max_length=30)
+    table_number = models.IntegerField(unique=True)
 
     def __int__(self):
         return self.table_number

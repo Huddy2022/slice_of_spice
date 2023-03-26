@@ -93,6 +93,22 @@ body p,span {
     color: #ffd500;
 }
 
+.yellow-button {
+    background-color: black;
+    border-color: #ffd500;
+    color: #ffd500;
+}
+
+.yellow-button a {
+    color: #ffd500;
+}
+
+.alert-info {
+    background-color: black;
+    color: #ffd500;
+    border-color: #ffd500;
+}
+
 /* gallery */
 #gallery {
     margin-top: 150px;
