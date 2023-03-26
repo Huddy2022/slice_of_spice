@@ -26,12 +26,13 @@ def reservations(request):
         booking_time = request.POST.get('time')
         table = request.POST.get('people')
 
-        reservation = Booking(user=user, booking_date=booking_date, booking_time=booking_time, table_id=table)
+        customer = Customer.objects.get(user=user)
+        reservation = Booking(customer=customer, booking_date=booking_date, booking_time=booking_time, table_id=table)
 
         reservation.save()
 
         return render(request, 'reservations.html')
-
+        
     return render(request, 'book_a_table.html')
 
 
