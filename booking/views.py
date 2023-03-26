@@ -16,7 +16,7 @@ def menu(request):
     return render(request, 'menu.html')
 
 
-def reservations(request):
+def book_a_table(request):
     if request.method == "POST":
         print(request.POST)
         name = request.POST.get('name')
@@ -26,11 +26,11 @@ def reservations(request):
         booking_time = request.POST.get('time')
         table = request.POST.get('people')
 
-        reservations = Booking(name=name, email=email, phone=phone, booking_date=booking_date, booking_time=booking_time, table_id=table)
+        book_a_table = Booking(name=name, email=email, phone=phone, booking_date=booking_date, booking_time=booking_time, table_id=table)
 
-        reservations.save()
+        book_a_table.save()
 
-    return render(request, 'reservations.html')
+    return render(request, 'book_a_table.html')
 
 
 def contact(request):
