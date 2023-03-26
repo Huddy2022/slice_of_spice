@@ -7,12 +7,26 @@
             <h1>Booking Details</h1>
             <hr>
             <table>
+                <thread>
                 <tr>
-                <td>Name: {{ user.Booking.name }}</td>
-                <td>Table Number: {{ user.Booking.table }}</td>
-                <td>Date: {{ user.Booking.booking_date }}</td>
-                <td>Time: {{ user.Booking.booking_time }}</td>
+                <td>Table Number:</td>
+                <td>Date:</td>
+                <td>Time:</td>
             </tr>
+        </thread>
+        <tbody>
+            {% for booking in user.bookings.all %}
+            <tr>
+                <td>{{ booking.table }}</td>
+                <td>{{ booking.booking_date }}</td>
+                <td>{{ booking.booking_time }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td>You have no bookings yet!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
             </table>
         </div>
     </div>
