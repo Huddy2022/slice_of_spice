@@ -41,21 +41,24 @@
                     </div>
                     {% if user.is_authenticated %}
                     <button type="submit" class="btn yellow-button">Book a Table</button>
-                    {% else %}
-                    <div class="alert alert-info"><strong>Attention: </strong>You need to be signed in to book a table.
-                    </div>
-                    <button class="btn yellow-button"><a href="{% url 'account_signup' %}"><strong>Sign
-                                Up</strong></a></button>
-                    <button class="btn yellow-button"><a
-                            href="{% url 'account_login' %}"><strong>Login</strong></a></button>
                     {% endif %}
                 </div>
-            </form>
-
-
-
         </div>
+        </form>
         <div class="col">
+        </div>
+        <div class="row g-0">
+            <div class="col"></div>
+            {% if not user.is_authenticated %}
+            <div class="col-4 text-center alert alert-info"><strong>Attention: </strong>You need to be signed
+                in to book a table.
+                <button class="btn yellow-button"><a href="{% url 'account_signup' %}"><strong>Sign
+                            Up</strong></a></button>
+                <button class="btn yellow-button"><a
+                        href="{% url 'account_login' %}"><strong>Login</strong></a></button>
+            </div>
+            {% endif %}
+            <div class="col"></div>
         </div>
     </div>
 </section>

@@ -47,7 +47,7 @@
                         <a class="nav-link nav" href="/gallery">Gallery</a>
                         {% if user.is_authenticated %}
                         <a class="nav-link nav" href="#">Welcome {{ user.username }}</a>
-                        <a class="nav-link nav" href="#">Reservations</a>
+                        <a class="nav-link nav" href="/reservations">Reservations</a>
                         <a class="nav-link nav" href="{% url 'account_logout' %}">Logout</a>
                         <a class="nav-link nav" href="https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu92.gitpod.io/admin/">Admin User</a>
                         {% else %}

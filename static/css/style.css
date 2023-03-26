@@ -80,7 +80,7 @@ body p,span {
     color: #ffd500;
 }
 
-/* reservation */
+/* book a table */
 .reservation-form {
     margin-bottom: 10px;
 }
@@ -109,6 +109,11 @@ body p,span {
     border-color: #ffd500;
 }
 
+/* Reservations */
+
+.bookings {
+    margin-top: 150px;
+}
 /* gallery */
 #gallery {
     margin-top: 150px;

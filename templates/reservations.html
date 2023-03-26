@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container bookings">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Booking Details</h1>
+            <hr>
+            <table>
+                <tr>
+                <td>Name: {{ user.Booking.name }}</td>
+                <td>Table Number: {{ user.Booking.table }}</td>
+                <td>Date: {{ user.Booking.booking_date }}</td>
+                <td>Time: {{ user.Booking.booking_time }}</td>
+            </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
