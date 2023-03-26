@@ -39,15 +39,19 @@
                         <textarea name="message" rows="5" cols="5" class="form-control"
                             placeholder="Message"></textarea>
                     </div>
+                    {% if user.is_authenticated %}
+                    <button type="submit" class="btn yellow-button">Book a Table</button>
+                    {% else %}
+                    <div class="alert alert-info"><strong>Attention: </strong>You need to be signed in to book a table.
+                    </div>
+                    <button class="btn yellow-button"><a href="{% url 'account_signup' %}"><strong>Sign
+                                Up</strong></a></button>
+                    <button class="btn yellow-button"><a
+                            href="{% url 'account_login' %}"><strong>Login</strong></a></button>
+                    {% endif %}
                 </div>
             </form>
-            {% if user.is_authenticated %}
-            <button type="submit" class="btn yellow-button">Book a Table</button>
-            {% else %}
-            <div class="alert alert-info"><strong>Attention:  </strong>You need to be signed in to book a table.</div>
-            <button class="btn yellow-button"><a href="{% url 'account_signup' %}"><strong>Sign Up</strong></a></button>
-            <button class="btn yellow-button"><a href="{% url 'account_login' %}"><strong>Login</strong></a></button>
-            {% endif %}
+
 
 
         </div>
