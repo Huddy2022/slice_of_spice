@@ -16,9 +16,10 @@ class Booking(models.Model):
 
 class Table(models.Model):
     number_of_people = models.IntegerField()
+    table_number = models.CharField(max_length=30)
 
     def __int__(self):
-        return self.number_of_people
+        return self.table_number
 
 
 class Cancellation(models.Model):
