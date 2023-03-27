@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import Booking, Cancellation, Table, Customer
 
 
@@ -39,8 +40,10 @@ def reservations(request):
     return render(request, 'book_a_table.html')
 
 
+@login_required
 def booked_table(request):
-    return render(request, 'reservations.html')
+    customer = request.user.profile
+    return render(request, 'reservations.html', {'customer': customer})
 
 
 def contact(request):

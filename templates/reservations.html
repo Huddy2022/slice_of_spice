@@ -4,30 +4,30 @@
 <div class="container bookings">
     <div class="row">
         <div class="col-sm-12">
-            <h1>Booking Details</h1>
-            <hr>
-            <table>
+            <h1 class="mb-4 booking-details">Booking Details</h1>
+            <hr class="'mb-4">
+            {% if customer.bookings.exists %}
+            <table class="table table-striped">
                 <thread>
-                <tr>
-                <td>Table Number:</td>
-                <td>Date:</td>
-                <td>Time:</td>
-            </tr>
-        </thread>
-        <tbody>
-            {% for booking in customer.bookings.all %}
-            <tr>
-                <td>{{ booking.table }}</td>
-                <td>{{ booking.booking_date }}</td>
-                <td>{{ booking.booking_time }}</td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td>You have no bookings yet!</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+                    <tr>
+                        <td>Table Number:</td>
+                        <td>Date:</td>
+                        <td>Time:</td>
+                    </tr>
+                </thread>
+                <tbody>
+                    {% for booking in customer.bookings.all %}
+                    <tr>
+                        <td scope="col">{{ booking.table }}</td>
+                        <td scope="col">{{ booking.booking_date }}</td>
+                        <td scope="col">{{ booking.booking_time }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
+            {% else %}
+            <p class="lead">You have no bookings yet!</p>
+            {% endif %}
         </div>
     </div>
 </div>

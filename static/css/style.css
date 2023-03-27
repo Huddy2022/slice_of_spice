@@ -114,6 +114,14 @@ body p,span {
 .bookings {
     margin-top: 150px;
 }
+
+.table {
+    background-color: white;
+}
+
+.booking-details {
+    color: #ffd500;
+}
 /* gallery */
 #gallery {
     margin-top: 150px;

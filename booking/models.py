@@ -13,7 +13,7 @@ class Customer(models.Model):
 
 
 class Booking(models.Model):
-    customer = models.ForeignKey('Customer', on_delete=models.CASCADE, related_name='profile')    
+    customer = models.ForeignKey('Customer', on_delete=models.CASCADE, related_name='bookings')    
     table = models.ForeignKey('Table', on_delete=models.CASCADE)
     booking_date = models.DateField()
     booking_time = models.TimeField()

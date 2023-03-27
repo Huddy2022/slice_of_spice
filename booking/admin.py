@@ -10,7 +10,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('customer', 'table', 'booking_date')
+    list_display = ('customer', 'table', 'booking_date', 'booking_time')
     search_fields = ['customer', 'booking_date']
     list_filter = ('customer', 'booking_date')
 
