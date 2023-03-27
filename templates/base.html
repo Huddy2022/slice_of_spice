@@ -49,17 +49,28 @@
                         <a class="nav-link nav" href="#">Welcome {{ user.username }}</a>
                         <a class="nav-link nav" href="/reservations">Reservations</a>
                         <a class="nav-link nav" href="{% url 'account_logout' %}">Logout</a>
-                        <a class="nav-link nav" href="https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu92.gitpod.io/admin/">Admin User</a>
+                        <a class="nav-link nav"
+                            href="https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu92.gitpod.io/admin/">Admin
+                            User</a>
                         {% else %}
                         <a class="nav-link nav" href="{% url 'account_signup' %}">Sign Up</a>
                         <a class="nav-link nav" href="{% url 'account_login' %}">Login</a>
-                        <a class="nav-link nav" href="https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu92.gitpod.io/admin/login/?next=/admin/">Admin User</a>
+                        <a class="nav-link nav"
+                            href="https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu92.gitpod.io/admin/login/?next=/admin/">Admin
+                            User</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
     </div>
     </nav>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
     {% block content %}
     <!--Content goes here-->
     {% endblock content %}

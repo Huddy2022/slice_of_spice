@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib import messages
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Booking, Cancellation, Table, Customer
@@ -35,7 +36,9 @@ def reservations(request):
 
         reservation.save()
 
-        return render(request, 'reservations.html')
+        messages.success(request, 'Congratulations your table is booked!')
+
+        return render(request, 'book_a_table.html')
         
     return render(request, 'book_a_table.html')
 
