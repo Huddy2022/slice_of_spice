@@ -56,8 +56,8 @@ def cancel_booking(request, booking_id):
         message = request.POST.get('message')
         cancellation = Cancellation(user=booking, message=message)
         cancellation.save()
-        message.success(request, 'Your cancellation request has been submitted.')
-        return render(request, 'reservations.html')
+        messages.success(request, 'Your cancellation request has been submitted.')
+        return render(request, 'index.html')
 
     return render(request, 'cancel_booking.html', {'booking': booking})
 

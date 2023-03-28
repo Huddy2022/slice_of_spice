@@ -127,6 +127,12 @@ body p,span {
 .booking-details {
     color: #ffd500;
 }
+
+/* Cancellation form */
+
+.cancellation-form {
+    margin-top: 100px;
+}
 /* gallery */
 #gallery {
     margin-top: 150px;

@@ -36,4 +36,4 @@ class Cancellation(models.Model):
     approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user
+        return f"Cancellation for {self.user} - Approved: {self.approved}"

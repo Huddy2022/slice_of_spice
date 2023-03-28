@@ -1,19 +1,30 @@
-{% extends base.html %}
+{% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h1>Cancel Booking</h1>
-    <hr>
-    <p>You are about to cancel you booking for {{ booking.table }} on {{ booking.booking_date }} at
-        {{ booking.booking_time }}.</p>
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="message">Reason for cancellation (optional):</label>
-            <textarea class="form-control" name="message" id="message"></textarea>
+<div class="container cancellation-form">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-danger">
+                    <h1 class="h4 mb-0">Cancel Booking</h1>
+                </div>
+                <div class="card-body">
+                    <p class="mb-4">You are about to cancel you booking for {{ booking.table }} on
+                        {{ booking.booking_date }} at
+                        {{ booking.booking_time }}.</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="message">Reason for cancellation (optional):</label>
+                            <textarea class="form-control" name="message" id="message"></textarea>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-danger">Cancel Booking</button>
+                        <a href="/reservations" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-danger">Cancel Booking</button>
-        <a href="/reservations" class="btn btn-secondary">Cancel</a>
-    </form>
+    </div>
 </div>
 {% endblock %}
