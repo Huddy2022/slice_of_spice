@@ -37,3 +37,8 @@ class Cancellation(models.Model):
 
     def __str__(self):
         return f"Cancellation for {self.user} - Approved: {self.approved}"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.approved:
+            self.user.delete()
