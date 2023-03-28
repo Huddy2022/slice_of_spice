@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Booking, Cancellation, Table, Customer
 
@@ -47,6 +47,19 @@ def reservations(request):
 def booked_table(request):
     customer = request.user.profile
     return render(request, 'reservations.html', {'customer': customer})
+
+
+@login_required
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    if request.method == "POST":
+        message = request.POST.get('message')
+        cancellation = Cancellation(user=booking, message=message)
+        cancellation.save()
+        message.success(request, 'Your cancellation request has been submitted.')
+        return render(request, 'reservations.html')
+
+    return render(request, 'cancel_booking.html', {'booking': booking})
 
 
 def contact(request):
