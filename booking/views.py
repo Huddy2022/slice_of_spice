@@ -51,9 +51,11 @@ def reservations(request):
         # Retrieve available tables
         date = request.GET.get('date')
         time = request.GET.get('time')
-        available_tables = Table.objects.filter(
-            Q(booking__isnull=True) | Q(booking__booking_date__gt=date) | Q(booking__booking_date=date, booking__booking_time__gt=time)).order_by('table_number')
-        
+        if date is not None and time is not None:
+            available_tables = Table.objects.filter(Q(booking__isnull=True) | Q(booking__booking_date__gt=date) | Q(booking__booking_date=date, booking__booking_time__gt=time)).order_by('table_number')
+        else:
+            available_tables = Table.objects.filter(booking__isnull=True).order_by('table_number')
+
         # Render the book_a_table template with available tables
         return render(request, 'book_a_table.html', {'available_tables': available_tables})
 
