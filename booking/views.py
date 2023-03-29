@@ -31,7 +31,6 @@ def reservations(request):
         table_id = request.POST.get('table')
 
         # Create or update customer record
-
         customer, created = Customer.objects.get_or_create(user=user)
         customer.email = email
         customer.phone = phone
@@ -62,7 +61,11 @@ def reservations(request):
 
 @login_required
 def booked_table(request):
-    customer = request.user.profile
+    try:
+        customer = request.user.profile
+    except Customer.DoesNotExist:
+        customer = Customer.objects.create(user=request.user)
+        
     return render(request, 'reservations.html', {'customer': customer})
 
 
