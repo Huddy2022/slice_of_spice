@@ -32,8 +32,12 @@
                     <input type="time" name="time" id="time" min="12:00" max="22:00" step="900" class="form-control"
                         placeholder="Time" data-rule="required" data-msg="This field is required">
                     <label for="people" class="form-label"></label>
-                    <input type="text" name="people" id="people" class="form-control" placeholder="No. of People"
-                        data-rule="required" data-msg="This field is required">
+                    <select name="table" id="table" class="form-control" data-rule="required" data-msg="Please select a table">
+                        <option value="">-- Select a table --</option>
+                        {% for table in available_tables %}
+                        <option value="{{ table.id }}">{{ table.name }} ({{ table.capacity }} Seats)</option>
+                        {% endfor%}
+                    </select>
                     <br>
                     <div class="form-label">
                         <textarea name="message" rows="5" cols="5" class="form-control"

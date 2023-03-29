@@ -18,13 +18,16 @@ class Booking(models.Model):
     booking_date = models.DateField()
     booking_time = models.TimeField()
 
+    class meta:
+        unqiue_together = ('table', 'booking_date', 'booking_time')
+
     def __str__(self):
         return f"{self.customer.user.username} - {self.table.table_number}"
 
 
 class Table(models.Model):
-    number_of_people = models.IntegerField()
-    table_number = models.IntegerField(unique=True)
+    table_number = models.PositiveIntegerField(unique=True)
+    capacity = models.PositiveIntegerField(choices=[(i, i) for i in range(1, 5)])
 
     def __int__(self):
         return f"Table {self.table_number}"

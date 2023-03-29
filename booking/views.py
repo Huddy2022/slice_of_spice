@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Booking, Cancellation, Table, Customer
@@ -20,27 +21,41 @@ def menu(request):
 
 def reservations(request):
     if request.method == "POST":
+        # Retrieve form data
         user = request.user
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         booking_date = request.POST.get('date')
         booking_time = request.POST.get('time')
-        table = request.POST.get('people')
+        table_id = request.POST.get('table')
+
+        # Create or update customer record
 
         customer, created = Customer.objects.get_or_create(user=user)
         customer.email = email
         customer.phone = phone
         customer.save()
-        reservation = Booking(customer=customer, booking_date=booking_date, booking_time=booking_time, table_id=table)
 
+        # Create reservation
+        reservation = Booking(customer=customer, booking_date=booking_date, booking_time=booking_time, table_id=table_id)
         reservation.save()
 
+        # Display success message
         messages.success(request, 'Congratulations your table is booked!')
 
-        return render(request, 'book_a_table.html')
+        # Render to home page
+        return render(request, 'index.html')
+
+    else:
+        # Retrieve available tables
+        date = request.GET.get('date')
+        time = request.GET.get('time')
+        available_tables = Table.objects.filter(
+            Q(booking__isnull=True) | Q(booking__booking_date__gt=date) | Q(booking__booking_date=date, booking__booking_time__gt=time)).order_by('table_number')
         
-    return render(request, 'book_a_table.html')
+        # Render the book_a_table template with available tables
+        return render(request, 'book_a_table.html', {'available_tables': available_tables})
 
 
 @login_required

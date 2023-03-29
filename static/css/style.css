@@ -128,6 +128,10 @@ body p,span {
     color: #ffd500;
 }
 
+.lead {
+    color: #ffd500;
+}
+
 /* Cancellation form */
 
 .cancellation-form {
