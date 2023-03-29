@@ -24,6 +24,7 @@ function filterOptions() {
         }
         if (!isAvailable) {
             alert('Sorry, there are no tables available for this date and time. Please select another date and time');
+            document.querySelector('form').reset();
         }
     }
 }
