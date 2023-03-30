@@ -17,6 +17,7 @@ class Booking(models.Model):
     table = models.ForeignKey('Table', on_delete=models.CASCADE)
     booking_date = models.DateField()
     booking_time = models.TimeField()
+    booking_duration = models.PositiveIntegerField(default=60)
 
     class meta:
         unqiue_together = ('table', 'booking_date', 'booking_time')
@@ -28,8 +29,10 @@ class Booking(models.Model):
 class Table(models.Model):
     table_number = models.PositiveIntegerField(unique=True)
     capacity = models.PositiveIntegerField(choices=[(i, i) for i in range(1, 5)])
+    available = models.BooleanField(default=True)
+    next_available_time = models.DateTimeField(null=True, blank=True)
 
-    def __int__(self):
+    def __str__(self):
         return f"Table {self.table_number}"
 
 

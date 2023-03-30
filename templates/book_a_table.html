@@ -32,6 +32,16 @@
                     <input type="time" name="time" id="time" min="12:00" max="22:00" step="900" class="form-control"
                         placeholder="Time" data-rule="required" data-msg="This field is required">
                     <label for="people" class="form-label"></label>
+                    <select name="people" id="people" class="form-control" data-rule="required"
+                        data-msg="Please select the number of people">
+                        <option value="">-- Select the number of people --</option>
+                        {% for capacity in capacities %}
+                        {% if available_tables|length >= capacity %}
+                        <option value="{{ capacity }}">{{ capacity }} people</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    <label for="table" class="form-label"></label>
                     <select name="table" id="table" class="form-control" data-rule="required"
                         data-msg="Please select a table">
                         <option value="">-- Select a table --</option>
@@ -39,7 +49,8 @@
                         {% if table.booking_set.count == 0 %}
                         <option value="{{ table.id }}" data-available="True">{{ table.table_number }}</option>
                         {% else %}
-                        <option value="{{ table.id }}" data-available="False" data-time="{{ table.booking_set.first.booking_time }}">{{ table.table_number }}</option>
+                        <option value="{{ table.id }}" data-available="False"
+                            data-time="{{ table.booking_set.first.booking_time }}">{{ table.table_number }}</option>
                         {% endif %}
                         {% endfor%}
                     </select>
