@@ -112,6 +112,7 @@ body p,span {
     background-color: black;
     color: #ffd500;
     border-color: #ffd500;
+    margin-top: 0px;
 }
 
 /* Reservations */
