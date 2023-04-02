@@ -38,15 +38,21 @@ def reservations(request):
         customer.phone = phone
         customer.save()
 
+        # Check if the selected table is already booked for the selected date and time
+        existing_reservation = Booking.objects.filter(table_id=table_id, booking_date=booking_date, booking_time=booking_time).first()
+
+        if existing_reservation:
+            # Display an error message and suggest alternative options
+            messages.error(request, f'The selected table is already booked on {booking_date} at {booking_time}. Please choose a different table, date or time.')
+            return render(request, 'book_a_table.html', {'Tables': Table.objects.filter(available=True)})
+
         # Create reservation
         table = Table.objects.get(id=table_id)
         reservation = Booking(customer=customer, table=table, booking_date=booking_date, booking_time=booking_time)
         reservation.save()
 
-        # Set the table unavailable for the next hour
-        # table = Table.objects.get(id=table_id)
+        # Update table availability
         # table.available = False
-        # table.next_available_time = timezone.now() + timedelta(hours=1)
         # table.save()
 
         # Display success message
@@ -54,29 +60,6 @@ def reservations(request):
 
         # Render to home page
         return render(request, 'index.html')
-
-    # else:
-        # Retrieve available tables
-        # date = request.GET.get('date')
-        # time = request.GET.get('time')
-        # if date is not None and time is not None:
-            # set tables available that have next available time greater than now
-            # tables_to_set_available = Table.objects.filter(available=False, next_available_time__lte=timezone.now())
-            # for table in tables_to_set_available:
-                # table.available = True
-                # table.save()
-
-            # Retrieve available tables that have been available for more than 1 hour
-            # available_tables = Table.objects.filter(Q(booking__isnull=True) | Q(booking__booking_date__gt=date) | Q(booking__booking_date=date, booking__booking_time__gt=time)).filter(Q(available=True) | Q(next_available_time__lte=timezone.now())).order_by('table_number')
-        # else:
-            # Set tables available that have next available time greater than now
-            # tables_to_set_available = Table.objects.filter(available=False, next_available_time__lte=timezone.now())
-            # for table in tables_to_set_available:
-                # table.available = True
-                # table.save()
-
-            # available_tables = Table.objects.filter(booking__isnull=True, available=True).order_by('table_number')
-
 
         # Render the book_a_table template with available tables
         return render(request, 'book_a_table.html')
