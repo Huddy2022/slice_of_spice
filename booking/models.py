@@ -3,7 +3,9 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
 
+# Create a model to represent a Customer
 class Customer(models.Model):
+    # A one-to-one relationship with the built-in User model in Django
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='profile')
     email = models.EmailField(max_length=40, blank=True)
@@ -13,13 +15,17 @@ class Customer(models.Model):
         return self.user.username
 
 
+# Create a model to represent a Booking
 class Booking(models.Model):
+    # A foreign key to the Customer model
     customer = models.ForeignKey(
         'Customer', on_delete=models.CASCADE, related_name='bookings')
+    # A foreign key to the Table model
     table = models.ForeignKey('Table', on_delete=models.CASCADE)
     booking_date = models.DateField()
     booking_time = models.TimeField()
 
+    # Create a unique constraint for the combination of table, date, and time
     class Meta:
         unique_together = ('table', 'booking_date', 'booking_time')
 
@@ -27,8 +33,10 @@ class Booking(models.Model):
         return f"{self.customer.user.username} - {self.table.table_number}"
 
 
+# Create a model to represent a Table
 class Table(models.Model):
     table_number = models.PositiveIntegerField(unique=True)
+    # A field to represent the capacity of the table
     capacity = models.PositiveIntegerField(
         choices=[(i, i) for i in range(1, 5)])
     available = models.BooleanField(default=True)
@@ -37,7 +45,9 @@ class Table(models.Model):
         return f"Table {self.table_number}"
 
 
+# Create a model to represent a Cancellation
 class Cancellation(models.Model):
+    # A foreign key to the Booking model
     user = models.ForeignKey('Booking', on_delete=models.CASCADE)
     message = models.TextField(max_length=300, null=True, blank=True)
     approved = models.BooleanField(default=False)
@@ -46,6 +56,8 @@ class Cancellation(models.Model):
         return f"Cancellation for {self.user} - Approved: {self.approved}"
 
     def save(self, *args, **kwargs):
+        # Call the parent save method to save the object to the database
         super().save(*args, **kwargs)
+        # If the cancellation is approved, delete the associated booking
         if self.approved:
             self.user.delete()
