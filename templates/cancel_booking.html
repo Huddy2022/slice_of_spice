@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!--Page for users to cancel a paticular reservation-->
 <div class="container cancellation-form">
     <div class="row">
         <div class="col-md-8 mx-auto">
@@ -9,6 +10,7 @@
                     <h1 class="h4 mb-0">Cancel Booking</h1>
                 </div>
                 <div class="card-body">
+                    <!--Shows the users table number, booking date and time-->
                     <p class="mb-4">You are about to cancel you booking for {{ booking.table }} on
                         {{ booking.booking_date }} at
                         {{ booking.booking_time }}.</p>

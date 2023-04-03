@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!--Reservation page where a user can see any of their reservations-->
 <div class="container bookings">
     <div class="row">
         <div class="col-sm-12">
@@ -16,6 +17,7 @@
                     </tr>
                 </thread>
                 <tbody>
+                    <!--Loops through the customer and booking models-->
                     {% for booking in customer.bookings.all %}
                     <tr>
                         <td scope="col">{{ booking.table }}</td>
