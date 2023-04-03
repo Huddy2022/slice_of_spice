@@ -64,6 +64,8 @@ def reservations(request):
         # Render the book_a_table template with available tables
         return render(request, 'book_a_table.html')
 
+    # Call delete_expired_bookings() function
+    delete_expired_bookings()
 
     # Retrieve all available tables
     tables = Table.objects.filter(available=True)
@@ -92,6 +94,13 @@ def cancel_booking(request, booking_id):
         return render(request, 'index.html')
 
     return render(request, 'cancel_booking.html', {'booking': booking})
+
+
+def delete_expired_bookings():
+    # Delete any bookings that have expired on date and time
+    current_time = timezone.now()
+    expired_bookings = Booking.objects.filter(Q(booking_date__lt=current_time.date()) | Q(booking_date=current_time.date(), booking_time__lte=current_time.time()))
+    expired_bookings.delete()
 
 
 def contact(request):
