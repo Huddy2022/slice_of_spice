@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name='profile')
     email = models.EmailField(max_length=40, blank=True)
     phone = models.CharField(max_length=12, null=True, blank=True)
 
@@ -13,7 +14,8 @@ class Customer(models.Model):
 
 
 class Booking(models.Model):
-    customer = models.ForeignKey('Customer', on_delete=models.CASCADE, related_name='bookings')
+    customer = models.ForeignKey(
+        'Customer', on_delete=models.CASCADE, related_name='bookings')
     table = models.ForeignKey('Table', on_delete=models.CASCADE)
     booking_date = models.DateField()
     booking_time = models.TimeField()
@@ -27,7 +29,8 @@ class Booking(models.Model):
 
 class Table(models.Model):
     table_number = models.PositiveIntegerField(unique=True)
-    capacity = models.PositiveIntegerField(choices=[(i, i) for i in range(1, 5)])
+    capacity = models.PositiveIntegerField(
+        choices=[(i, i) for i in range(1, 5)])
     available = models.BooleanField(default=True)
 
     def __str__(self):

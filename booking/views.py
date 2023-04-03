@@ -38,17 +38,26 @@ def reservations(request):
         customer.phone = phone
         customer.save()
 
-        # Check if the selected table is already booked for the selected date and time
-        existing_reservation = Booking.objects.filter(table_id=table_id, booking_date=booking_date, booking_time=booking_time).first()
+        # Check if the selected table is already booked for the selected
+        # date and time
+        existing_reservation = Booking.objects.filter(
+            table_id=table_id, booking_date=booking_date,
+            booking_time=booking_time).first()
 
         if existing_reservation:
             # Display an error message and suggest alternative options
-            messages.error(request, f'The selected table is already booked on {booking_date} at {booking_time}. Please choose a different table, date or time.')
-            return render(request, 'book_a_table.html', {'Tables': Table.objects.filter(available=True)})
+            messages.error(request, f'The selected table is already booked on '
+                                    f'{booking_date} at {booking_time}. '
+                                    f'Please choose a different table, '
+                                    f'date or time.')
+            return render(request, 'book_a_table.html', {
+                'Tables': Table.objects.filter(available=True)})
 
         # Create reservation
         table = Table.objects.get(id=table_id)
-        reservation = Booking(customer=customer, table=table, booking_date=booking_date, booking_time=booking_time)
+        reservation = Booking(customer=customer, table=table,
+                              booking_date=booking_date,
+                              booking_time=booking_time)
         reservation.save()
 
         # Update table availability
@@ -79,7 +88,7 @@ def booked_table(request):
         customer = request.user.profile
     except Customer.DoesNotExist:
         customer = Customer.objects.create(user=request.user)
-        
+
     return render(request, 'reservations.html', {'customer': customer})
 
 
@@ -90,7 +99,8 @@ def cancel_booking(request, booking_id):
         message = request.POST.get('message')
         cancellation = Cancellation(user=booking, message=message)
         cancellation.save()
-        messages.success(request, 'Your cancellation request has been submitted.')
+        messages.success(
+            request, 'Your cancellation request has been submitted.')
         return render(request, 'index.html')
 
     return render(request, 'cancel_booking.html', {'booking': booking})
@@ -99,7 +109,10 @@ def cancel_booking(request, booking_id):
 def delete_expired_bookings():
     # Delete any bookings that have expired on date and time
     current_time = timezone.now()
-    expired_bookings = Booking.objects.filter(Q(booking_date__lt=current_time.date()) | Q(booking_date=current_time.date(), booking_time__lte=current_time.time()))
+    expired_bookings = Booking.objects.filter(
+        Q(booking_date__lt=current_time.date()) | Q(
+            booking_date=current_time.date(),
+            booking_time__lte=current_time.time()))
     expired_bookings.delete()
 
 
