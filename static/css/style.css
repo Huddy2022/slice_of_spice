@@ -114,6 +114,11 @@ body p,span {
 
 /* Reservations */
 
+.reservation-image img {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
 .bookings {
     margin-top: 150px;
 }
@@ -166,7 +171,10 @@ body p,span {
 
 @media screen and (max-width: 600px) {
     .about-us {
-        font-size: xx-small;
+        font-size: small;
+    }
+    .section-heading {
+        font-size: medium;
     }
 }
 
