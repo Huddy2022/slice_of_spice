@@ -25,31 +25,31 @@ class TestViews(TestCase):
             booking_date='2023-04-28', booking_time='12:00')
         # URL for cancel_booking view
         self.url = reverse('cancel_booking', args=[self.booking.id])
-    
+
     # test the index view
     def test_index_view(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
-    
+
     # test the book_a_table view
     def test_book_a_table_view(self):
         response = self.client.get('/book_a_table')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'book_a_table.html')
-    
+
     # test the menu view
     def test_menu_view(self):
         response = self.client.get('/menu')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'menu.html')
-    
+
     # test the gallery view
     def test_gallery_view(self):
         response = self.client.get('/gallery')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'gallery.html')
-    
+
     # test the reservations view (GET request)
     def test_reservations_view_get(self):
         # authenticate client as user
@@ -57,7 +57,7 @@ class TestViews(TestCase):
         response = self.client.get('/reservations')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'reservations.html')
-    
+
     # test the reservations view (POST request)
     def test_reservations_view_post(self):
         data = {
@@ -74,7 +74,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'index.html')
         self.assertTrue(Booking.objects.filter(
             customer=self.customer).exists())
-    
+
     # test the cancel_booking view (GET request)
     def test_cancel_booking_view_get(self):
         # Log in as the user
@@ -97,7 +97,7 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'index.html')
         self.assertTrue(Cancellation.objects.filter(
             user=self.booking).exists())
-    
+
     # test the delete_expired_booking view
     def test_delete_expired_bookings(self):
         # Create a customer associated with a user
