@@ -23,7 +23,11 @@
                         <td scope="col">{{ booking.table }}</td>
                         <td scope="col">{{ booking.booking_date }}</td>
                         <td scope="col">{{ booking.booking_time }}</td>
-                        <td><a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger">Cancel</a></td>
+                        <td scope="col">
+                            <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-danger"
+                                {% if submitted %}disabled{% endif %}>{% if submitted %}Awaiting
+                                Approval{% else %}Cancel Booking{% endif %}
+                            </a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

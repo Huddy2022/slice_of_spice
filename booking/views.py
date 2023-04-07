@@ -96,19 +96,23 @@ def booked_table(request):
 def cancel_booking(request, booking_id):
     # Retrieve booking with specified ID
     booking = get_object_or_404(Booking, id=booking_id)
+    submitted = False  # initialize submitted variable
     # If form is submitted (POST request)
     if request.method == "POST":
         message = request.POST.get('message')
         # Create a new cancellation request
         cancellation = Cancellation(user=booking, message=message)
         cancellation.save()
+        booking.status = 'Awaiting Approval'  # Update booking status
+        booking.save()
         # Display success message
         messages.success(
             request, 'Your cancellation request has been submitted.')
-        # Render to home page
+        submitted = True  # initialize submitted variable
         return render(request, 'index.html')
-    # Render cancel_booking.html with booking data
-    return render(request, 'cancel_booking.html', {'booking': booking})
+    # Render cancel_booking.html with booking data and submitted variable
+    return render(request, 'cancel_booking.html', {
+        'booking': booking, 'submitted': submitted})
 
 
 # Delete any bookings that have expired on date and time
