@@ -25,6 +25,10 @@ body p,span {
     font-size: 20px;
 }
 
+.nav:hover {
+    color: #ffd500;
+}
+
 /* alert */
 
 .alert {
@@ -79,6 +83,14 @@ body p,span {
 }
 
 .btn-social :hover {
+    color: #ffd500;
+}
+
+.footer-nav :hover {
+    color: #ffd500;
+}
+
+.home-nav:hover {
     color: #ffd500;
 }
 
