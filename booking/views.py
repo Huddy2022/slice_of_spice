@@ -77,7 +77,6 @@ def reservations(request):
     # Retrieve all available tables
     tables = Table.objects.filter(available=True)
 
-    # Render the book_a_table template with available tables
     return render(request, 'book_a_table.html', {'Tables': tables})
 
 
