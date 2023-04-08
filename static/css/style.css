@@ -147,6 +147,10 @@ body p,span {
     color: #ffd500;
 }
 
+.badge-warning {
+    color: black;
+}
+
 /* Cancellation form */
 
 .cancellation-form {
