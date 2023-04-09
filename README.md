@@ -4,7 +4,7 @@ The Live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3m
 
 Slice of Spice website offers a restaurant booking system for the Sice of Spice resturant and provides the user with navigation such as home/about us, menu, gallery, contact, and a user authentification for sign in/log in (and when loged in a signout and a reservations page for that user is displayed in the navigation). The site is targetted for any user to explore the restaurant and understand if its somewhere they would like to go an eat. If so they have the opporutnity to book a table with this restaurant but only if they sign up to become a member (which allows the super user to have details of the customer but also allows the user to have their own reservations page for any of their own bookings).
 
-![Responsive Mockup]()
+![Responsive Mockup](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Responsive.png)
 
 ## Tools ##
 
@@ -32,9 +32,9 @@ This is the hub for all my templates in the slice of spice website. In the head 
   - I incorporated the sign in and sign up so that users have there own access to any of their bookings but also allows the super user to have identification of anyone booking a table.
   - The admin user tab was to allow easy access for the super user to log in and out of the website to control and bookings, cancellations, tables and customers.
 
-![Navigation not signed in]()
+![Navigation not signed in](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Navigation_not_signed_in.png)
 
-![Navigation signed in]()
+![Navigation signed in](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Navigation_signed_in.png)
 
 - __Alert__
 
@@ -45,7 +45,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
   - If they have succesfully sent a cancellation request to the super user.
   - To warn the user if they have already sent a canellation request for that booking.
 
-![Success alert]()
+![Success alert](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/success_alert.png)
 
 - __Footer__
 
@@ -54,7 +54,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
   - Contact - is for the user to contact the website if they have any quieries (the contact tab on navigation links to this footer contact section).
   - Follow us - Allows the user to follow us on social media sites such as facebook and instagram. 
 
-![Footer]()
+![Footer](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/footer.png)
 
 ## Home ##
 
@@ -64,7 +64,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
 
    - Main image for the website which is an image of the restuarant and a table to give the impression of your about to sit down at a restuarnt. 
 
-![Home image]()
+![Home image](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/home_image.png)
 
 - __About us__
 
@@ -72,7 +72,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
    - The about us description i used an upper and a lower heading for better asthetics and a short paragraph about how it all began.
    - The image compliments the the about us section so it doesnt look to boring.
 
-![About us]()
+![About us](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/about_us.png)
 
 ## Menu ##
 
