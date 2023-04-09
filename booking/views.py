@@ -101,6 +101,9 @@ def booked_table(request):
     except Customer.DoesNotExist:
         customer = Customer.objects.create(user=request.user)
 
+    # Call delete_expired_bookings() function
+    delete_expired_bookings()
+
     return render(request, 'reservations.html', {'customer': customer})
 
 
