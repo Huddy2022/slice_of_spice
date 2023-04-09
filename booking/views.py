@@ -36,6 +36,7 @@ def reservations(request):
         booking_date = request.POST.get('date')
         booking_time = request.POST.get('time')
         table_id = request.POST.get('table')
+        message = request.POST.get('message')
 
         # Check if the booking date is in the past
         current_date = timezone.now().date()
@@ -52,6 +53,7 @@ def reservations(request):
 
         # Create or update customer record
         customer, created = Customer.objects.get_or_create(user=user)
+        customer.name = name
         customer.email = email
         customer.phone = phone
         customer.save()
@@ -75,7 +77,8 @@ def reservations(request):
         table = Table.objects.get(id=table_id)
         reservation = Booking(customer=customer, table=table,
                               booking_date=booking_date,
-                              booking_time=booking_time)
+                              booking_time=booking_time,
+                              message=message)
         reservation.save()
 
         # Display success message

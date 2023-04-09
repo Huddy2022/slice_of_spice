@@ -8,6 +8,7 @@ class Customer(models.Model):
     # A one-to-one relationship with the built-in User model in Django
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='profile')
+    name = models.CharField(max_length=30, null=True, blank=True)
     email = models.EmailField(max_length=40, blank=True)
     phone = models.CharField(max_length=12, null=True, blank=True)
 
@@ -24,6 +25,7 @@ class Booking(models.Model):
     table = models.ForeignKey('Table', on_delete=models.CASCADE)
     booking_date = models.DateField()
     booking_time = models.TimeField()
+    message = models.TextField(max_length=300, null=True, blank=True)
 
     # Create a unique constraint for the combination of table, date, and time
     class Meta:

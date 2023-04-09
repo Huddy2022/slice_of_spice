@@ -5,14 +5,15 @@ from .models import Booking, Table, Cancellation, Customer
 # Registering the Customer model with the admin site
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    search_fields = ['user_username', 'phone']
+    search_fields = ['user_username', 'name', 'phone']
     list_filter = ('user', 'phone')
 
 
 # Registering the Booking model with the admin site
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('customer', 'table', 'booking_date', 'booking_time')
+    list_display = ('customer', 'table', 'booking_date', 'booking_time',
+                    'message')
     search_fields = ['customer', 'booking_date']
     list_filter = ('customer', 'booking_date')
 

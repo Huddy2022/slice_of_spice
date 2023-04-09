@@ -15,7 +15,7 @@ Slice of Spice website offers a restaurant booking system for the Sice of Spice 
 - Django-The message Framework
 - Django - Q object
 - Python import timezone
-- timedelta class
+- datetime and timedelta class
 
 ## Base ##
 
