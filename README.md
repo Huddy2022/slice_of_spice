@@ -83,7 +83,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
 - To the right (desktop size) is the drinks menu.
 - When in mobile size each column stacks on top of each other.
 
-![Menu]()
+![Menu](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/menu.png)
 
 ## Book a table ##
 
@@ -93,7 +93,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
 
    - The main image is a menu to give the impression you are about to order
 
-![Book a table image]()
+![Book a table image](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/book_a_table_image.png)
 
 - __Reservation form__
 
@@ -109,7 +109,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
     - Lastly there is a message box if the user wishs to send a message to the restaurant but this is not a required field.
     - The submit button is only visable is the user is authenticated/loged in otherwise the alert is shown at the bottom (i used an if statement for this)
 
-![Reservation form when signed in]()
+![Reservation form when signed in](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Reservation_form_when_signed_in.png)
 
   - __Functionality__
 
@@ -122,7 +122,8 @@ This is the hub for all my templates in the slice of spice website. In the head 
           - Then it checks if there is a current reservation for that specific date, time and table. If there is then an alet comes up to let the user know, so we dont get any double bookings.
           - Once checked and all fine a reservation is made and saved with all the data for the table Id, customer, table, date and time. Then a success message is shown to the user as it sends the user back to home page.
       - There is another function relating to this form which is the delete_expired_bookings function, where if a user selects to go on this page or the reservations page it will check this function first and will automatically delete any out of date bookings on the system.
-          
+
+![Alert when double booking](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/alert_double_booking.png)
 
 - __Message/alert__
 
@@ -130,7 +131,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
 - The message is for the user to know if there is more than four guests coming they would need to contact the restaurant so the restaurant can organise the tables accordingly.
 - The alert is shown to remind the user that they need to either sign up or log in to book a table at the restaurant and there are two buttons which link to either the sign up or log in pages for easy access for the user.
 
-![Message / alert when not signed in]()
+![Message / alert when not signed in](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Message_alert_when_not_signed_in.png)
 
 ## Contact ##
 
@@ -140,7 +141,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
 
 - The gallery page shows the user multiple images of the restaurant, customers and staff to give the overall impression of the slice of spice.
 
-![Gallery]()
+![Gallery](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/gallery.png)
 
 ## Sign up / Login ##
 
@@ -151,11 +152,11 @@ This is the hub for all my templates in the slice of spice website. In the head 
 - Also, when signed in any user will have a reservations tab in the navigation, so they can see what bookings if any they have.
 - I have put ACCOUNT_EMAIL_VERIFICATION = 'none'so that login and registration should work without errors regardless of whether you use an email address to sign in/up. Instead we can get the email of a user when they book a table.
 
-![Sign up]()
+![Sign up](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/sign_up.png)
 
-![Login]()
+![Login](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/sign_in.png)
 
-![Sign out]()
+![Sign out](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/sign_out.png)
 
 ## Reservations ##
 
@@ -168,7 +169,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
       - If you dont have any bookings yet there will be a message of this page saying that to you.
       - If a user has selected to cancel a booking it would be sent to the super user to authorise and until the super user has approved this there will be an awaiting approval message for the user on that selected booking and the cancel booking will be disabled, so the user cannot keep sending cancellations for that booking.
 
-![Reservations]()
+![Reservations](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/reservations.png)
 
   - __Cancel booking__
       
@@ -178,7 +179,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
       - I have put in a double safe method on this cancellation if a user who has already submitted a cancellation for this specific booking and somehow gets onto the cancellation page again it will come up with an alert stating to the user they have already submitted a request and its awaiting approval. 
       - Using the cancellation model, once a user has submitted a cancellation request it is sent to the super user to check and has the authority to approve the cancellation, or if a message is received to amend a booking the super user has authority to amend the booking in the booking model and cancel the cancellation request instead.
 
-![Cancel booking]()
+![Cancel booking](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/cancel_booking.png)
 
 ## Admin user ##
 
