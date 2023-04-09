@@ -149,6 +149,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
 - Authorisation is needed to book a table in this restaurant - which helps the manager/super user to manage all bookings, cancellations, customers and tables.
 - Once signed in there is a welcome alert message but also a nice Welcome {user} tab in the navigation which makes it more personal for the user when loged in.
 - Also, when signed in any user will have a reservations tab in the navigation, so they can see what bookings if any they have.
+- I have put ACCOUNT_EMAIL_VERIFICATION = 'none'so that login and registration should work without errors regardless of whether you use an email address to sign in/up. Instead we can get the email of a user when they book a table.
 
 ![Sign up]()
 
@@ -167,6 +168,8 @@ This is the hub for all my templates in the slice of spice website. In the head 
       - If you dont have any bookings yet there will be a message of this page saying that to you.
       - If a user has selected to cancel a booking it would be sent to the super user to authorise and until the super user has approved this there will be an awaiting approval message for the user on that selected booking and the cancel booking will be disabled, so the user cannot keep sending cancellations for that booking.
 
+![Reservations]()
+
   - __Cancel booking__
       
       - This cancel booking page is linked to the reservations page and can only be accessed when a user selects the cancel booking button for one of their bookings.
@@ -175,3 +178,64 @@ This is the hub for all my templates in the slice of spice website. In the head 
       - I have put in a double safe method on this cancellation if a user who has already submitted a cancellation for this specific booking and somehow gets onto the cancellation page again it will come up with an alert stating to the user they have already submitted a request and its awaiting approval. 
       - Using the cancellation model, once a user has submitted a cancellation request it is sent to the super user to check and has the authority to approve the cancellation, or if a message is received to amend a booking the super user has authority to amend the booking in the booking model and cancel the cancellation request instead.
 
+![Cancel booking]()
+
+## Admin user ##
+
+- As i have created a super user to basically be the manager of this website/resturant, i thought it would be easier to have an accessability to the adminstration by having a admin user link in the navigation. It only allows staff members to log in on this paticular area.
+
+   - __Models__
+
+      - I created four models for this website, customer, booking, table and cancellation.
+        
+        - __Customer__
+           
+           - This model stores the user, email and phone.
+           - The user has a one to one relationship and uses the djangos built in user model.
+
+        - __Booking__
+          
+           - This model stores the customer, table, booking date and booking time.
+           - The customer has a foreign key relating to the Customer model.
+           - The table has a foregin key relating to the Table model.
+           - I used a class meta to create a unquie together of all the tuples of table, booking_date and booking_time.
+
+        - __Table__
+
+           - This model stores the table number, capacity of the table and the tables availability.
+           - The capacity has a for loop which allows positive integers to be stored in the database with choices of values between 1-4.
+
+        - __Cancellation__
+
+           - This model stores the user, message and approved
+           - The user has a foerign key relating to the Booking model
+           - Approved is set to default False to allow admin to approve any cancellation
+           - Inside this model is a function save() which saves to the database first and then with an if statment checks if approved is True and if so delete thats specific attribute of the user.
+
+## Testing ##
+
+- __Testing__
+
+| Tested | Functionality | Result | Responsiveness | 
+|:------------:|:---------------:|:---------:|:----------:|
+| Slice of spice heading | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Home nav | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Menu nav | Renders menu page | yes renders menu page when clicked | works well on tablet and mobile |
+| Book a table nav | Renders book a table page | yes renders book a table page when clicked | works well on tablet and mobile |
+| Contact Nav | Redirects to contact in footer | yes redirects to contact area in footer when clicked | works well on tablet and mobile |
+| Gallery nav | Renders gallery page | yes renders gallery page when clicked | works well on tablet and mobile |
+| Sign up nav | Renders sign up page | yes renders sign up page when clicked | works well on tablet and mobile |
+| log in nav | Renders login page | yes renders login page when clicked | works well on tablet and mobile |
+| Admin user nav | Renders djagno admin page | yes renders djanogs admin page when clicked | works well on tablet and mobile |
+| Welcome {user} nav | Doenst link to anywhere | yes doesnt render any page or error when logged in and clicked | works well on tablet and mobile |
+| Reservations nav | Renders reservations page | yes renders reservations page when logged in and clicked | works well on tablet and mobile |
+| Cancel booking page | Renders cancel booking page | yes renders cancel booking page when user clicks cancel booking button | works well on tablet and mobile |
+| Logout nav | Renders logout page | yes renders logout page when logged in and clicked | works well on tablet and mobile |
+| Past booking | Checks specific date/time/table is already booked | yes alert comes up if user tries to book the same table for same date/time | works well on tablet and mobile |
+| Double booking | Checks specific date/time/table is already booked | yes alert comes up if user tries to book the same table for same date/time | works well on tablet and mobile |
+| Successful booking | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Not logged in booking | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Booking reservation | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Cancel booking successful | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Awating approval | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Delete expired bookings | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
