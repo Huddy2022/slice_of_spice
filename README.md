@@ -231,11 +231,19 @@ This is the hub for all my templates in the slice of spice website. In the head 
 | Reservations nav | Renders reservations page | yes renders reservations page when logged in and clicked | works well on tablet and mobile |
 | Cancel booking page | Renders cancel booking page | yes renders cancel booking page when user clicks cancel booking button | works well on tablet and mobile |
 | Logout nav | Renders logout page | yes renders logout page when logged in and clicked | works well on tablet and mobile |
-| Past booking | Checks specific date/time/table is already booked | yes alert comes up if user tries to book the same table for same date/time | works well on tablet and mobile |
-| Double booking | Checks specific date/time/table is already booked | yes alert comes up if user tries to book the same table for same date/time | works well on tablet and mobile |
-| Successful booking | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
-| Not logged in booking | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
-| Booking reservation | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
-| Cancel booking successful | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
-| Awating approval | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
-| Delete expired bookings | Renders index home page | yes renders home page when clicked | works well on tablet and mobile |
+| Past booking | Checks specific date/time is in the past | yes alert comes up if user tries to book a table for a past date/time | works well on tablet and mobile |
+| Double booking | Checks specific date/time/table is already booked| yes alert comes up if user tries to book the same table for same date/time | works well on tablet and mobile |
+| Successful booking | Allows user to book a table | yes once signed in and no double booking or past date a successful alert comes up for user | works well on tablet and mobile |
+| Not logged in booking | Doesnt allow user to book a table | yes if not signed in submit button is disabled | works well on tablet and mobile |
+| Booking reservation | Shows users table number, date and time of reservation | yes on reservation page, table number, date and time booked are showing | works well on tablet and mobile |
+| Cancel booking successful | Allow user to cancel a specific booking | yes buttons work to allow a user to cancel a specific booking | works well on tablet and mobile |
+| Awating approval | Awaiting aproval shows in reservation page | yes when a user selects cancel booking, awaiting aproval is shown on reservation page | works well on tablet and mobile |
+| Delete expired bookings | Deletes any out of date booking | yes deletes any out of date booking | n/a |
+
+
+## Validator Testing ##
+
+- __HTML__
+- __CSS__
+- __Python__
+- __Accessibility__
