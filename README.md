@@ -153,9 +153,9 @@ This is the hub for all my templates in the slice of spice website. In the head 
 
 ![Sign up]()
 
-![Log in]()
+![Login]()
 
-![Log out]()
+![Sign out]()
 
 ## Reservations ##
 
@@ -240,6 +240,10 @@ This is the hub for all my templates in the slice of spice website. In the head 
 | Awating approval | Awaiting aproval shows in reservation page | yes when a user selects cancel booking, awaiting aproval is shown on reservation page | works well on tablet and mobile |
 | Delete expired bookings | Deletes any out of date booking | yes deletes any out of date booking | n/a |
 
+- I created two tests in the booking app
+- test_models.py to test all four of the models were working correctly
+- test_views.py to test all the functions in my views.py were working correctly
+- I changed the database back to sqlite and ran the tests and i can confirm all tests ran ok
 
 ## Validator Testing ##
 
@@ -260,3 +264,53 @@ This is the hub for all my templates in the slice of spice website. In the head 
 
    - I confirmed the colours and fonts are easy to read and I tested the colours I have chosen through the web aim contrast checker.
    - I used the lighthouse in dev tools to test my web page on a desktop and mobile devices.
+
+## Bugs ##
+
+- Initally i tried an approach similar to the i think i therfor blog and the hello django projects for my models but found they were not the right fit for the booking system
+- I tried mulitple different models but as i was trying different methods i have multiple problems, especially if i migrated various times. I had to reset the database most times to recofy this.
+- Main bugs i had with the models was trying get them to connect properly using the right foregin keys and if they were a one to one field etc.
+- rendering the cancel booking view i intially had errors with but i found a way to return the booking_id as an integer to get around the error and rendered properly.
+- My reservations functions i struggled with quite a bit and had various different errors coming up through the process.
+  - Firstly get method didnt alway return what was needed and i needed to update my models accordingly to get the right return.
+  - It took me while to understand i needed to create/update a user - i made it work when i linked this up to the Customer model
+  - Double booking was difficult and i got multiple errors when i tried to understand if i could take out the booked table on the form or not. Eventually settled for an alert and filtered through the Booking models objects to check if a booking for a specific table number, date and time had already been done. I did have to update the Booking model to include a meta class to create the unqiue together. Then used a nested if statement in the reservations to check for previous reservations and then alerted the user.
+  - The booking wasnt always being created in the models and i had to create and save a reservation each time it was being posted
+  - When i created all ten tables with the super user in the tables model, i had a bug where once a table had been booked it was taken out of the reservation form. I created an availble is always true to stop this from happening. 
+  - The hardest part of this function was working with dates and times and i took me a while to understand which to use but i added from django.utils import timezone
+from datetime import timedelta, datetime to make everything work in this function.
+- I wanted a user to be logged in to book a table and see any of their previous reservations - i got past the inital bugs by adding a @login_required decorator.
+  - I also used a try and except to get the users booking details - i struggled at first but amended the models to add a related_name to associate them with.
+- The cancel booking function was similar to the reservations, where i had to find the users booking and then in the if statement save the cancellation before passing it to the cancellation model. The booking i used get_object_or_404 to retrieve the booking object or if not there raise and error.
+- The delete expired bookings is difficult to work with the timezone now - i had to filter through to get all the bookings and i had to use a Q class to be more complex by adding the dates and times together to make sure its our of date.
+- To get the delete_expired_bookings to work i had to add the function in two other functions otherwise it would get called.
+
+## Un fixed bugs ##
+
+- I'm not sure if this is an un fixed bug but regarding the delete_expired_bookings function it does delete any expired bookings from the database when the date and time has passed. However as we have had daylight savings recently its saying my server is 1 hour ahead so the booking wont be deleted until an hour later than my time. I didnt want to change the settings.py timezone as i felt might jepodise the whole websites functions.
+
+## Deployment ##
+
+- created a heroku app - sliceofspice.
+- created a new instance from elephantsql.
+- I created an env.py file to hide to the secret key, database url and the cloudinary url.
+- Linked the env.py file to my settings.py.
+- In the settings of the heroku app i added the database_url, cloudinary_url, secret_keyand PORT 8000.
+- For deployment i set debug to False.
+- Removed the DISABLE_COLLECTSTATIC 1
+- Deployed branch to main in heroku 
+
+The live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu93.gitpod.io/
+
+## Credits ##
+
+### Content ###
+
+- This website gave me a rough understading of how i wanted to template my website and the drinks for my menu https://www.theslanteddoor.co.uk/
+- This website helped me with my menu as in the food https://www.godine.co.uk/dalyan-nottingham/menu
+- The icons used were taken from font awesome https://fontawesome.com.
+- The think before i blog project helped me with my intial models but mainly with the allauth authentication.
+- The hello django project helped me with my test_views and my test_models.
+- These two websites gave me a good understanding of types of models to use, the type of views to create and the basic form to use https://github.com/anujsaxena9127/restaurant / https://github.com/NDevox/django_restaurant_manager.
+- This video helped me with my models https://www.youtube.com/watch?v=TuXFAl8aMvc
+- This website also helped me understand the type of models and views to use https://blog.devgenius.io/django-tutorial-on-how-to-create-a-booking-system-for-a-health-clinic-9b1920fc2b78.
