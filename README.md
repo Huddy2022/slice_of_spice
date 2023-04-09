@@ -244,6 +244,19 @@ This is the hub for all my templates in the slice of spice website. In the head 
 ## Validator Testing ##
 
 - __HTML__
+
+   - I orginally had four errors when i put it throught the validator.
+   - I can confirm now, no errors were returned when passing through the official w3c validator.
+
 - __CSS__
+
+   - I can confirm no errors were returned when passing through the official w3c validator.
+
 - __Python__
+   
+   - I used the CI Python Linter to check my code and i can confirm all clear and no errors were found.
+
 - __Accessibility__
+
+   - I confirmed the colours and fonts are easy to read and I tested the colours I have chosen through the web aim contrast checker.
+   - I used the lighthouse in dev tools to test my web page on a desktop and mobile devices.
