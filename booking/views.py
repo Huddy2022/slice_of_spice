@@ -4,7 +4,7 @@ from .models import Booking, Cancellation, Table, Customer
 from django.contrib import messages
 from django.db.models import Q
 from django.utils import timezone
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 # Import login_required decorator
 from django.contrib.auth.decorators import login_required
@@ -36,6 +36,19 @@ def reservations(request):
         booking_date = request.POST.get('date')
         booking_time = request.POST.get('time')
         table_id = request.POST.get('table')
+
+        # Check if the booking date is in the past
+        current_date = timezone.now().date()
+        booking_datetime = timezone.make_aware(
+            datetime.strptime(
+                f"{booking_date} {booking_time}", '%Y-%m-%d %H:%M'))
+        if booking_datetime < timezone.now():
+            messages.error(
+                request, f"The selected date '{booking_date}' is in the past."
+                         f"Please choose a future date.")
+            return render(request, 'book_a_table.html', {
+                'Tables': Table.objects.filter(available=True)
+            })
 
         # Create or update customer record
         customer, created = Customer.objects.get_or_create(user=user)
