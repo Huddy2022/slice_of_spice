@@ -55,13 +55,13 @@
                         {% endif %}
                         <a class="nav-link nav" href="{% url 'account_logout' %}">Logout</a>
                         <a class="nav-link nav"
-                            href="https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu93.gitpod.io/admin">Admin
+                            href="{% url 'admin:index' %}">Admin
                             User</a>
                         {% else %}
                         <a class="nav-link nav" href="{% url 'account_signup' %}">Sign Up</a>
                         <a class="nav-link nav" href="{% url 'account_login' %}">Login</a>
                         <a class="nav-link nav"
-                            href="https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu93.gitpod.io/admin">Admin
+                            href="{% url 'admin:index' %}">Admin
                             User</a>
                         {% endif %}
                     </div>
