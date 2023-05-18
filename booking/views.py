@@ -133,9 +133,11 @@ def cancel_booking(request, booking_id):
             user=booking,
             message=message)
         cancellation.save()
+        # Delete the booking
+        booking.delete()
         # Display success message
         messages.success(
-            request, 'Your cancellation request has been submitted.')
+            request, 'Your cancellation has been successful.')
         return render(request, 'index.html')
 
     # Render cancel_booking.html with booking data and submitted variable
