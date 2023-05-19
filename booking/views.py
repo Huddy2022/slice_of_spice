@@ -129,6 +129,81 @@ def cancel_booking(request, booking_id):
         'booking': booking})
 
 
+@login_required
+def edit_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id)
+    # Handle the edit logic here
+    if request.method == "POST":
+        # Retrieve form data
+        user = request.user
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        booking_date = request.POST.get('date')
+        booking_time = request.POST.get('time')
+        table_id = request.POST.get('table')
+        message = request.POST.get('message')
+
+        # Check if the booking date is in the past
+        current_date = timezone.now().date()
+        booking_datetime = timezone.make_aware(
+            datetime.strptime(
+                f"{booking_date} {booking_time}", '%Y-%m-%d %H:%M'))
+        if booking_datetime < timezone.now():
+            messages.error(
+                request, f"The selected date '{booking_date}' is in the past."
+                         f"Please choose a future date.")
+            return render(request, 'book_a_table.html', {
+                'Tables': Table.objects.filter(available=True)
+            })
+
+        # update customer record
+        customer, created = Customer.objects.get_or_create(user=user)
+        customer.name = name
+        customer.email = email
+        customer.phone = phone
+        customer.save()
+
+        # Check if the selected table is already booked for the selected
+        # date and time
+        existing_reservation = Booking.objects.filter(
+            table_id=table_id, booking_date=booking_date,
+            booking_time=booking_time).exclude(id=booking_id).first()
+
+        if existing_reservation:
+            # Display an error message and suggest alternative options
+            messages.error(request, f'The selected table is already booked on '
+                                    f'{booking_date} at {booking_time}. '
+                                    f'Please choose a different table, '
+                                    f'date or time.')
+            return render(request, 'edit_booking.html', {'booking': booking})
+
+        # Update reservation
+        table = Table.objects.get(id=table_id)
+        booking.customer = customer
+        booking.table = table
+        booking.booking_date = booking_date
+        booking.booking_time = booking_time
+        booking.message = message
+        booking.save()
+
+        # Display success message
+        messages.success(
+            request, 'Congratulations you have edited your booking!')
+
+        # Render to home page
+        return render(request, 'index.html')
+
+    # Call delete_expired_bookings() function
+    delete_expired_bookings()
+
+    # Retrieve all available tables
+    tables = Table.objects.filter(available=True)
+
+    return render(
+        request, 'edit_booking.html', {'booking': booking, 'Tables': tables})
+
+
 # Delete any bookings that have expired on date and time
 def delete_expired_bookings():
     # Get current time

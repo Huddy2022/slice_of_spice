@@ -12,7 +12,9 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('gallery', views.gallery, name='gallery'),
     path('admin/', admin.site.urls, name='admin'),
-    # Define the URL pattern for canceling a booking with booking ID
-    path('cancel_booking/<int:booking_id>/',
+    # Define the URL pattern for canceling/editing a booking with booking ID
+    path('cancel_booking/<int:booking_id>/cancel/',
          views.cancel_booking, name='cancel_booking'),
+    path('edit_booking/<int:booking_id>/edit/',
+         views.edit_booking, name='edit_booking'),
 ]

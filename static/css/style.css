@@ -117,11 +117,22 @@ body p,span {
     color: #ffd500;
 }
 
+.yellow-button:hover {
+    background-color: black;
+    color: white;
+}
+
 .alert-info {
     background-color: black;
     color: #ffd500;
     border-color: #ffd500;
     margin-top: 0px;
+}
+
+/* Edit booking */
+
+.edit-booking-form {
+    margin-top: 100px;
 }
 
 /* Reservations */

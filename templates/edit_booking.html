@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="reservation-form edit-booking-form">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-8 col-md-4 text-center">
+            <form action="" method="post" role="form">
+                {% csrf_token %}
+                <h2>Edit your booking</h2>
+                <div class="mb-3">
+                    <label for="name" class="form-label"></label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Name" pattern=".{3,}"
+                        title="Please enter at least 3 characters" data-rule="minlen:4"
+                        data-msg="Please enter at least 3 characters" required>
+                    <label for="email" class="form-label"></label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email address"
+                        data-rule="email" data-msg="Please enter a valid email" required>
+                    <label for="phone" class="form-label"></label>
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone"
+                        pattern="[0-9]{11}" title="Please enter a valid 11-digit phone number" data-rule="minlen:11"
+                        data-msg="Please enter a valid 11-digit phone number" required>
+                    <label for="date" class="form-label"></label>
+                    <input type="date" name="date" id="date" class="form-control" placeholder="Date"
+                        data-rule="required" data-msg="This field is required" required>
+                    <label for="time" class="form-label"></label>
+                    <input type="time" name="time" id="time" min="12:00" max="22:00" step="900" class="form-control"
+                        placeholder="Time" data-rule="required" data-msg="This field is required" required>
+                    <label for="table" class="form-label"></label>
+                    <select name="table" id="table" class="form-control" data-rule="required"
+                        data-msg="Please select a table" required>
+                        <option value="">-- Select a table --</option>
+                        <!--Loop through Tables model-->
+                        {% for table in Tables %}
+                        <option value="{{ table.id }}" data-available="True">{{ table.table_number }} Capacity:
+                            {{ table.capacity }}</option>
+                        {% endfor%}
+                    </select>
+                    <br>
+                    <div class="form-label">
+                        <textarea name="message" rows="5" cols="5" class="form-control"
+                            placeholder="Message"></textarea>
+                    </div>
+                    <!--User has to be logged in to book a table-->
+                    {% if user.is_authenticated %}
+                    <button type="submit" class="btn yellow-button">Edit Booking</button>
+                    <a href="/reservations" class="btn yellow-button">Cancel</a>
+                    {% endif %}
+                </div>
+        </div>
+        </form>
+        <div class="col">
+        </div>
+        <div class="row g-0">
+            <div class="col"></div>
+            <!--A message to tell users if they have more than four guests they need to contact the restaurant-->
+            <div class="col-8 col-md-4 alert alert-info text-center"><strong>Attention: </strong>If you have more than
+                four guest
+                please contact the restaurant to book a table.</div>
+            <div class="col"></div>
+        </div>
+        <div class="row g-0">
+            <div class="col"></div>
+            <!--User has to be logged in to book a table or gets this alert-->
+            {% if not user.is_authenticated %}
+            <div class="col-8 col-md-4 text-center alert alert-info"><strong>Attention: </strong>You need to be signed
+                in to book a table.
+                <button class="btn yellow-button"><a href="{% url 'account_signup' %}"><strong>Sign
+                            Up</strong></a></button>
+                <button class="btn yellow-button"><a
+                        href="{% url 'account_login' %}"><strong>Login</strong></a></button>
+            </div>
+            {% endif %}
+            <div class="col"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
