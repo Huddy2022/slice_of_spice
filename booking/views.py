@@ -115,24 +115,8 @@ def booked_table(request):
 def cancel_booking(request, booking_id):
     # Retrieve booking with specified ID
     booking = get_object_or_404(Booking, id=booking_id)
-    # Check if there is an existing cancellation request for the booking
-    existing_cancellation = Cancellation.objects.filter(
-        user=booking).exists()
     # If form is submitted (POST request)
     if request.method == "POST":
-        # If there is an existing cancellation request,
-        # display alert message and redirect
-        if existing_cancellation:
-            messages.warning(
-                request,
-                'A cancellation request for this booking is already pending.')
-            return render(request, 'index.html')
-        message = request.POST.get('message')
-        # Create a new cancellation request
-        cancellation = Cancellation(
-            user=booking,
-            message=message)
-        cancellation.save()
         # Delete the booking
         booking.delete()
         # Display success message
@@ -140,9 +124,9 @@ def cancel_booking(request, booking_id):
             request, 'Your cancellation has been successful.')
         return render(request, 'index.html')
 
-    # Render cancel_booking.html with booking data and submitted variable
+    # Render cancel_booking.html with booking data
     return render(request, 'cancel_booking.html', {
-        'booking': booking, 'existing_cancellation': existing_cancellation})
+        'booking': booking})
 
 
 # Delete any bookings that have expired on date and time

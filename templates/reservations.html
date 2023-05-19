@@ -24,16 +24,8 @@
                         <td scope="col">{{ booking.booking_date }}</td>
                         <td scope="col">{{ booking.booking_time }}</td>
                         <td scope="col">
-                            {% if booking.cancellation_set.all %}
-                                {% for cancellation in booking.cancellation_set.all %}
-                                    {% if not cancellation.approved %}
-                                        <span class="badge badge-warning">Cancellation request pending</span>
-                                    {% endif %}
-                                {% endfor %}
-                            {% else %}
                             <a href="{% url 'cancel_booking' booking.id %}" id="cancel-booking-{{ booking.id }}"
                                 class="btn btn-danger">Cancel Booking</a>
-                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
