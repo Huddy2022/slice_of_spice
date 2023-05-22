@@ -1,6 +1,6 @@
 # Import necessary modules
 from django.shortcuts import render, get_object_or_404
-from .models import Booking, Cancellation, Table, Customer
+from .models import Booking, Table, Customer
 from django.contrib import messages
 from django.db.models import Q
 from django.utils import timezone

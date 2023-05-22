@@ -45,21 +45,3 @@ class Table(models.Model):
 
     def __str__(self):
         return f"Table {self.table_number}"
-
-
-# Create a model to represent a Cancellation
-class Cancellation(models.Model):
-    # A foreign key to the Booking model
-    user = models.ForeignKey('Booking', on_delete=models.CASCADE)
-    message = models.TextField(max_length=300, null=True, blank=True)
-    approved = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"Cancellation for {self.user} - Approved: {self.approved}"
-
-    def save(self, *args, **kwargs):
-        # Call the parent save method to save the object to the database
-        super().save(*args, **kwargs)
-        # If the cancellation is approved, delete the associated booking
-        if self.approved:
-            self.user.delete()
