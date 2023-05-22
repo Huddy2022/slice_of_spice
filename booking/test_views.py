@@ -3,8 +3,9 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, timedelta
 from django.utils import timezone
-from .models import Table, Booking, Customer, Cancellation
+from .models import Table, Booking, Customer
 from booking.views import delete_expired_bookings
+from django.contrib.messages import get_messages
 
 
 # Create your tests here.
@@ -22,7 +23,7 @@ class TestViews(TestCase):
         # Create a booking associated with the customer and table
         self.booking = Booking.objects.create(
             customer=self.customer, table=self.table,
-            booking_date='2023-04-28', booking_time='12:00')
+            booking_date='2023-06-28', booking_time='12:00')
         # URL for cancel_booking view
         self.url = reverse('cancel_booking', args=[self.booking.id])
 
@@ -64,14 +65,14 @@ class TestViews(TestCase):
             'name': 'Test User',
             'email': 'testuser@example.com',
             'phone': '1234567890',
-            'date': datetime.now() + timedelta(days=2),
+            'date': datetime.now().date() + timedelta(days=2),
             'time': '20:00',
             'table': self.table.id
         }
         self.client.force_login(self.user)
-        response = self.client.post(self.url, data=data)
+        response = self.client.post('/reservations', data=data)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'reservations.html')
         self.assertTrue(Booking.objects.filter(
             customer=self.customer).exists())
 
@@ -88,15 +89,17 @@ class TestViews(TestCase):
 
     # test the cancel_booking view (POST request)
     def test_cancel_booking_view_post(self):
+        # Log in as the user
         self.client.force_login(self.user)
-        data = {
-            'message': 'I need to cancel my booking.'
-        }
-        response = self.client.post(self.url, data=data)
-        self.assertEqual(response.status_code, 200)
+        # Issue a GET request to the cancel_booking view
+        response = self.client.post(self.url)
+        # Check that the booking is deleted
+        self.assertFalse(Booking.objects.filter(pk=self.booking.pk).exists())
+        # Check for success message in messages
+        messages = [str(msg) for msg in response.context['messages']]
+        self.assertIn('Your cancellation has been successful.', messages)
+        # Check that the response renders the index.html template
         self.assertTemplateUsed(response, 'index.html')
-        self.assertTrue(Cancellation.objects.filter(
-            user=self.booking).exists())
 
     # test the delete_expired_booking view
     def test_delete_expired_bookings(self):
@@ -129,3 +132,44 @@ class TestViews(TestCase):
         self.assertTrue(Booking.objects.filter(pk=future_booking.pk).exists())
         # Check that the customer was not deleted
         self.assertTrue(Customer.objects.filter(pk=customer.pk).exists())
+
+    # test the edit_booking view (Post request)
+    def test_edit_booking_view_post(self):
+        # Log in as the user
+        self.client.force_login(self.user)
+        # Update the customer data
+        self.customer.name = 'New Name'
+        self.customer.email = 'newemail@example.com'
+        self.customer.phone = '1234567890'
+        self.customer.save()
+        # Update the booking date
+        self.booking.booking_date = '2023-06-30'
+        self.booking.booking_time = '15:00'
+        self.booking.message = 'New message'
+        self.booking.save()
+        # Define the new data for the booking
+        new_data = {
+            'name': self.customer.name,
+            'email': self.customer.email,
+            'phone':  self.customer.phone,
+            'date': '2023-06-30',
+            'time': '15:00',
+            'table': self.table.id,
+            'message': 'New message',
+        }
+        # Generate the URL for the edit_booking view
+        edit_booking_url = reverse('edit_booking', args=[self.booking.id])
+        # Issue a POST request to the edit_booking view
+        response = self.client.post(edit_booking_url, data=new_data)
+        # Refresh the booking instance from the database
+        self.booking.refresh_from_db()
+        # Check that the booking data has been updated
+        self.assertEqual(self.booking.customer.name, 'New Name')
+        self.assertEqual(self.booking.customer.email, 'newemail@example.com')
+        self.assertEqual(self.booking.customer.phone, '1234567890')
+        self.assertEqual(str(self.booking.booking_date), '2023-06-30')
+        self.assertEqual(str(self.booking.booking_time), '15:00:00')
+        self.assertEqual(self.booking.table.id, self.table.id)
+        self.assertEqual(self.booking.message, 'New message')
+        # Check that the response renders the index.html template
+        self.assertTemplateUsed(response, 'index.html')

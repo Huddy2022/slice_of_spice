@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from .models import Customer, Booking, Table, Cancellation
+from .models import Customer, Booking, Table
 from datetime import date, time
 
 
@@ -29,18 +29,6 @@ class ModelsTest(TestCase):
             booking_date=date.today(), booking_time=time(hour=14, minute=30))
         self.assertEqual(str(booking), 'testuser - 1')
 
-    def test_cancellation_str(self):
-        # Test the __str__ method of the Cancellation model
-        table = Table.objects.create(table_number=1, capacity=2)
-        booking = Booking.objects.create(
-            customer=self.customer, table=table, booking_date=date.today(),
-            booking_time=time(hour=14, minute=30))
-        cancellation = Cancellation.objects.create(
-            user=booking, message='test message', approved=True)
-        self.assertEqual(
-            str(cancellation), 'Cancellation for testuser - 1 - Approved: True'
-            )
-
     def test_booking_unique_together(self):
         # Test that the unique_together constraint is
         # working in the Booking model
@@ -52,14 +40,3 @@ class ModelsTest(TestCase):
             booking2 = Booking.objects.create(
                 customer=self.customer, table=table, booking_date=date.today(),
                 booking_time=time(hour=14, minute=30))
-
-    def test_cancellation_delete_booking(self):
-        # Test that a booking is deleted when a cancellation is approved
-        table = Table.objects.create(table_number=1, capacity=2)
-        booking = Booking.objects.create(
-            customer=self.customer, table=table, booking_date=date.today(),
-            booking_time=time(hour=14, minute=30))
-        cancellation = Cancellation.objects.create(
-            user=booking, message='test message', approved=True)
-        with self.assertRaises(Booking.DoesNotExist):
-            Booking.objects.get(pk=booking.pk)

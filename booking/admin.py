@@ -22,4 +22,3 @@ class BookingAdmin(admin.ModelAdmin):
 @admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
     search_fields = ['number_of_people']
-
