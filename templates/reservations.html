@@ -16,18 +16,18 @@
                         <td>Time:</td>
                     </tr>
                 </thread>
-                <tbody>
+                <tbody class="col-sm-12">
                     <!--Loops through the customer and booking models-->
                     {% for booking in customer.bookings.all %}
                     <tr>
                         <td scope="col">{{ booking.table }}</td>
                         <td scope="col">{{ booking.booking_date }}</td>
                         <td scope="col">{{ booking.booking_time }}</td>
-                        <td scope="col"><a href="{% url 'cancel_booking' booking.id %}"
-                                id="cancel-booking-{{ booking.id }}" class="btn btn-danger">Cancel Booking</a>
+                        <td scope="col-sm-12"><a href="{% url 'cancel_booking' booking.id %}"
+                                id="cancel-booking-{{ booking.id }}" class="btn btn-danger btn-cancel">Cancel Booking</a>
                         </td>
-                        <td><a href="{% url 'edit_booking' booking.id %}" id="edit-booking-{{ booking.id }}"
-                                class="btn btn-danger">Edit Booking</a></td>
+                        <td scope="col-sm-12"><a href="{% url 'edit_booking' booking.id %}" id="edit-booking-{{ booking.id }}"
+                                class="btn btn-danger btn-edit">Edit Booking</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
