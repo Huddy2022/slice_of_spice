@@ -1,8 +1,8 @@
 # Slice of Spice #
 
-The Live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu93.gitpod.io/
+The Live link can be found here - 
 
-Slice of Spice website offers a restaurant booking system for the Slice of Spice restaurant and provides the user with navigation such as home/about us, menu, gallery, contact, and a user authentication for sign in/log in (and when logged in a sign out and a reservations page for that user is displayed in the navigation). The site is targeted for any user to explore the restaurant and understand if its somewhere they would like to go an eat. If so they have the opportunity to book a table with this restaurant but only if they sign up to become a member (which allows the super user to have details of the customer but also allows the user to have their own reservations page for any of their own bookings).
+Slice of Spice website offers a restaurant booking system for the Slice of Spice restaurant and provides the user with navigation such as home/about us, menu, gallery, contact, and a user authentication for sign in/log in (and when logged in a sign out and a reservations page for that user is displayed in the navigation). The site is targeted for any user to explore the restaurant and understand if its somewhere they would like to go an eat. If so they have the opportunity to book a table with this restaurant but only if they sign up to become a member (which allows the super user to have details of the customer but also allows the user to have their own reservations page which they can browse and check which bookings they have, plus if a users wishes to they can either cancel or edit one of their current reservations.).
 
 ![Responsive Mockup](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Responsive.png)
 
@@ -26,11 +26,11 @@ This is the hub for all my templates in the slice of spice website. In the head 
   - When you are not logged in there are eight navigation tabs and the slice of spice header which also acts as a link to the home index page.
   - Home, menu, book a table, contact, gallery, sign up, sign in, admin user.
   - When logged in there are nine navigation tabs.
-  - Home, menu, book a table, contact, gallery, welcome user (doesn’t link to any page), reservations, logout, admin user.
+  - Home, menu, book a table, contact, gallery, welcome user (doesn’t link to any page, but references the user), reservations, logout, admin user.
   - The navigation I used a bootstrap template and styled it slightly different to suit the website.
   - It's designed to make it easy for the user to navigate throughout the website.
   - I incorporated the sign in and sign up so that users have their own access to any of their bookings but also allows the super user to have identification of anyone booking a table.
-  - The admin user tab was to allow easy access for the super user to log in and out of the website to control and bookings, cancellations, tables and customers.
+  - The admin user tab was to allow easy access for the super user to log in and out of the website to control any bookings, cancellations, tables and customers.
 
 ![Navigation not signed in](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Navigation_not_signed_in.png)
 
@@ -42,8 +42,8 @@ This is the hub for all my templates in the slice of spice website. In the head 
   - Whether they signed in / signed up.
   - If they have successfully booked a table.
   - If that table is already booked for a specific date or time.
-  - If they have successfully sent a cancellation request to the super user.
-  - To warn the user if they have already sent a cancellation request for that booking.
+  - If they have successfully cancelled a booking.
+  - If they have successfully edited one of their bookings.
 
 ![Success alert](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/success_alert.png)
 
@@ -160,26 +160,36 @@ This is the hub for all my templates in the slice of spice website. In the head 
 
 ## Reservations ##
 
-- I created a reservations tab in the navigation to allow users to see any of their bookings but also to cancel any of their bookings.
+- I created a reservations tab in the navigation to allow users to see any of their bookings but also to cancel/edit any of their own bookings.
  
   - __Reservations__
       - This tab only shows when a user is logged in using the booked_table function in the views.
       - On this page it shows the users table number, date booked and time booked
       - There’s a cancel booking button for each of the bookings booked which redirects you to the cancel_booking page.
+      - There's also an edit booking button for each of the bookings booked which redirects you to the edit_booking page.
       - If you don’t have any bookings yet there will be a message of this page saying that to you.
-      - If a user has selected to cancel a booking it would be sent to the super user to authorise and until the super user has approved this there will be an awaiting approval message for the user on that selected booking and the cancel booking will be disabled, so the user cannot keep sending cancellations for that booking.
 
-![Reservations](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/reservations.png)
+![Reservations]()
 
   - __Cancel booking__
       
       - This cancel booking page is linked to the reservations page and can only be accessed when a user selects the cancel booking button for one of their bookings.
-      - On this page I have created a card that displays a header, a sub text, a message box for the user to explain why this wish to cancel the booking or if they want to amend anything to their booking and a submit cancellation button. There is also a cancel button if the user changes their mind.
-      - Once a user selects the cancel booking button I use the cancel_booking function in my views to retrieve the specific booking id, and using the post method I get the message from the user and create a cancellation using the Cancellation model for the user and message. A success message is then sent to the user when it renders them back to the home page saying your cancellation request has been submitted.
-      - I have put in a double safe method on this cancellation if a user who has already submitted a cancellation for this specific booking and somehow gets onto the cancellation page again it will come up with an alert stating to the user they have already submitted a request and its awaiting approval. 
-      - Using the cancellation model, once a user has submitted a cancellation request it is sent to the super user to check and has the authority to approve the cancellation, or if a message is received to amend a booking the super user has authority to amend the booking in the booking model and cancel the cancellation request instead.
+      - On this page I have created a card that displays a header, a sub text, a cancel booking button and a cancel button(if the user changes their mind).
+      - Once a user selects the cancel booking button the cancel_booking function in my views retrieves the specific booking id and using the post method wil delete that specfic booking and redirect you back to the home page with a success message is then shown to the user saying your cancellation has been successful.
+      - Alternatively, if the user changes their mind and cancels the request with the cancel button it will redirect the user back to the reservations page.
 
-![Cancel booking](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/cancel_booking.png)
+![Cancel booking]()
+
+  - __Edit booking__
+      
+      - This edit booking page is linked to the reservations page and can only be accessed when a user selects the edit booking button for one of their bookings.
+      - On this page I have re created a very similar form to that of the book_a_table.html, with a new header.
+      - However, if a user creates a new booking it will update the orginal booking that was linked to reservation page using its specific ID, through the edit_booking function.
+      - Once the user submits the new booking it will redirect the user back to the home page with a success message saying Congratulations you have edited your booking!.
+      - In the function i have put the current booking_id as excluded as some users might get paranoid about changing a booking and might just want to re book for the same date/time/table, rather than feel they might have lost it after clicking the edit booking button.
+      - Alternatively, if the user changes their mind and cancels the request with the cancel button it will redirect the user back to the reservations page.
+
+![Edit booking]()
 
 ## Admin user ##
 
@@ -187,7 +197,7 @@ This is the hub for all my templates in the slice of spice website. In the head 
 
    - __Models__
 
-      - I created four models for this website, customer, booking, table and cancellation.
+      - I created three models for this website, customer, booking and table.
         
         - __Customer__
            
@@ -200,18 +210,12 @@ This is the hub for all my templates in the slice of spice website. In the head 
            - The customer has a foreign key relating to the Customer model.
            - The table has a foreign key relating to the Table model.
            - I used a class meta to create a unique together of all the tuples of table, booking_date and booking_time.
+           - An admin user can edit any booking or delete
 
         - __Table__
 
            - This model stores the table number, capacity of the table and the tables availability.
            - The capacity has a for loop which allows positive integers to be stored in the database with choices of values between 1-4.
-
-        - __Cancellation__
-
-           - This model stores the user, message and approved
-           - The user has a foreign key relating to the Booking model
-           - Approved is set to default False to allow admin to approve any cancellation
-           - Inside this model is a function save() which saves to the database first and then with an if statement checks if approved is True and if so delete that’s specific attribute of the user.
 
 ## Testing ##
 
@@ -229,8 +233,9 @@ This is the hub for all my templates in the slice of spice website. In the head 
 | log in nav | Renders login page | yes renders login page when clicked | works well on tablet and mobile |
 | Admin user nav | Renders Django admin page | yes renders Django’s admin page when clicked | works well on tablet and mobile |
 | Welcome {user} nav | Doesn’t link to anywhere | yes doesn’t render any page or error when logged in and clicked | works well on tablet and mobile |
-| Reservations nav | Renders reservations page | yes renders reservations page when logged in and clicked | works well on tablet and mobile |
+| Reservations nav | Renders reservations page | yes renders reservations page when logged in and clicked | works well on tablet and mobile fits relatively well but user needs to slide left and right to see edit booking button and nav bar |
 | Cancel booking page | Renders cancel booking page | yes renders cancel booking page when user clicks cancel booking button | works well on tablet and mobile |
+| Edit booking page | Renders edit booking page | yes renders edit booking page when user clicks edit booking button | works well on tablet and mobile |
 | Logout nav | Renders logout page | yes renders logout page when logged in and clicked | works well on tablet and mobile |
 | Past booking | Checks specific date/time is in the past | yes alert comes up if user tries to book a table for a past date/time | works well on tablet and mobile |
 | Double booking | Checks specific date/time/table is already booked| yes alert comes up if user tries to book the same table for same date/time | works well on tablet and mobile |
@@ -238,11 +243,10 @@ This is the hub for all my templates in the slice of spice website. In the head 
 | Not logged in booking | Doesn’t allow user to book a table | yes if not signed in submit button is disabled | works well on tablet and mobile |
 | Booking reservation | Shows users table number, date and time of reservation | yes on reservation page, table number, date and time booked are showing | works well on tablet and mobile |
 | Cancel booking successful | Allow user to cancel a specific booking | yes buttons work to allow a user to cancel a specific booking | works well on tablet and mobile |
-| Awaiting approval | Awaiting approval shows in reservation page | yes when a user selects cancel booking, awaiting approval is shown on reservation page | works well on tablet and mobile |
 | Delete expired bookings | Deletes any out of date booking | yes deletes any out of date booking | n/a |
 
 - I created two tests in the booking app
-- test_models.py to test all four of the models were working correctly
+- test_models.py to test all three of the models were working correctly
 - test_views.py to test all the functions in my views.py were working correctly
 - I changed the database back to SQLite and ran the tests and I can confirm all tests ran ok
 
@@ -285,6 +289,8 @@ from datetime import timedelta, datetime to make everything work in this functio
 - The cancel booking function was similar to the reservations, where I had to find the users booking and then in the if statement save the cancellation before passing it to the cancellation model. The booking I used get_object_or_404 to retrieve the booking object or if not there raise and error.
 - The delete expired bookings is difficult to work with the timezone now - I had to filter through to get all the bookings and I had to use a Q class to be more complex by adding the dates and times together to make sure it’s out of date.
 - To get the delete_expired_bookings to work I had to add the function in two other functions otherwise it would get called.
+- Re visiting the code i had an error with the UX navigation broken link when deployed which was a result of using the wrong URL for the admin page. I have corrected this now and created a new url path that will allow any user to click on the admin link without it breaking.
+- Another bug was i didnt use CRUD properly, where the user can create, read any booking but only had the option to cancel a booking or put a message to the super user if they wished to edit/cancel a booking. Now i have removed the cancellation model as was uneccessary and changed the function for the cancel booking, so a user can cancel their own booking without an approval from the super user. Also, i have created an edit booking where the user can if they wish edit one of their own bookings by creating a new reservation which will overwrite the old one. These two amendments should allow for a complete CRUD.
 
 ## Un fixed bugs ##
 
@@ -307,7 +313,7 @@ from datetime import timedelta, datetime to make everything work in this functio
 - Removed the DISABLE_COLLECTSTATIC 1
 - Deployed branch to main in Heroku 
 
-The live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu93.gitpod.io/
+The live link can be found here - 
 
 ## Credits ##
 
