@@ -1,8 +1,8 @@
 # Slice of Spice #
 
-The Live link can be found here - 
+The Live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu97.gitpod.io/home
 
-Slice of Spice website offers a restaurant booking system for the Slice of Spice restaurant and provides the user with navigation such as home/about us, menu, gallery, contact, and a user authentication for sign in/log in (and when logged in a sign out and a reservations page for that user is displayed in the navigation). The site is targeted for any user to explore the restaurant and understand if its somewhere they would like to go an eat. If so they have the opportunity to book a table with this restaurant but only if they sign up to become a member (which allows the super user to have details of the customer but also allows the user to have their own reservations page which they can browse and check which bookings they have, plus if a users wishes to they can either cancel or edit one of their current reservations.).
+Slice of Spice website offers a restaurant booking system for the Slice of Spice restaurant and provides the user with navigation such as home/about us, menu, gallery, contact, and a user authentication for sign in/log in (and when logged in a sign out and a reservations page for that user is displayed in the navigation). The site is targeted for any user to explore the restaurant and understand if its somewhere they would like to go an eat. If so they have the opportunity to book a table with this restaurant but only if they sign up to become a member (which allows the super user to have details of the customer but also allows the user to have their own reservations page which they can browse and check which bookings they have, plus if a user's wishes to they can either cancel or edit one of their current reservations.).
 
 ![Responsive Mockup](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/Responsive.png)
 
@@ -169,27 +169,27 @@ This is the hub for all my templates in the slice of spice website. In the head 
       - There's also an edit booking button for each of the bookings booked which redirects you to the edit_booking page.
       - If you don’t have any bookings yet there will be a message of this page saying that to you.
 
-![Reservations]()
+![Reservations](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/reservations.png)
 
   - __Cancel booking__
       
       - This cancel booking page is linked to the reservations page and can only be accessed when a user selects the cancel booking button for one of their bookings.
       - On this page I have created a card that displays a header, a sub text, a cancel booking button and a cancel button(if the user changes their mind).
-      - Once a user selects the cancel booking button the cancel_booking function in my views retrieves the specific booking id and using the post method wil delete that specfic booking and redirect you back to the home page with a success message is then shown to the user saying your cancellation has been successful.
+      - Once a user selects the cancel booking button the cancel_booking function in my views retrieves the specific booking id and using the post method will delete that specific booking and redirect you back to the home page with a success message is then shown to the user saying your cancellation has been successful.
       - Alternatively, if the user changes their mind and cancels the request with the cancel button it will redirect the user back to the reservations page.
 
-![Cancel booking]()
+![Cancel booking](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/cancel_booking.png)
 
   - __Edit booking__
       
       - This edit booking page is linked to the reservations page and can only be accessed when a user selects the edit booking button for one of their bookings.
       - On this page I have re created a very similar form to that of the book_a_table.html, with a new header.
-      - However, if a user creates a new booking it will update the orginal booking that was linked to reservation page using its specific ID, through the edit_booking function.
+      - However, if a user creates a new booking it will update the original booking that was linked to reservation page using its specific ID, through the edit_booking function.
       - Once the user submits the new booking it will redirect the user back to the home page with a success message saying Congratulations you have edited your booking!.
-      - In the function i have put the current booking_id as excluded as some users might get paranoid about changing a booking and might just want to re book for the same date/time/table, rather than feel they might have lost it after clicking the edit booking button.
+      - In the function I have put the current booking_id as excluded as some users might get paranoid about changing a booking and might just want to re book for the same date/time/table, rather than feel they might have lost it after clicking the edit booking button.
       - Alternatively, if the user changes their mind and cancels the request with the cancel button it will redirect the user back to the reservations page.
 
-![Edit booking]()
+![Edit booking](https://github.com/Huddy2022/slice_of_spice/blob/main/assets/images/edit_booking.png)
 
 ## Admin user ##
 
@@ -289,8 +289,8 @@ from datetime import timedelta, datetime to make everything work in this functio
 - The cancel booking function was similar to the reservations, where I had to find the users booking and then in the if statement save the cancellation before passing it to the cancellation model. The booking I used get_object_or_404 to retrieve the booking object or if not there raise and error.
 - The delete expired bookings is difficult to work with the timezone now - I had to filter through to get all the bookings and I had to use a Q class to be more complex by adding the dates and times together to make sure it’s out of date.
 - To get the delete_expired_bookings to work I had to add the function in two other functions otherwise it would get called.
-- Re visiting the code i had an error with the UX navigation broken link when deployed which was a result of using the wrong URL for the admin page. I have corrected this now and created a new url path that will allow any user to click on the admin link without it breaking.
-- Another bug was i didnt use CRUD properly, where the user can create, read any booking but only had the option to cancel a booking or put a message to the super user if they wished to edit/cancel a booking. Now i have removed the cancellation model as was uneccessary and changed the function for the cancel booking, so a user can cancel their own booking without an approval from the super user. Also, i have created an edit booking where the user can if they wish edit one of their own bookings by creating a new reservation which will overwrite the old one. These two amendments should allow for a complete CRUD.
+- Re visiting the code I had an error with the UX navigation broken link when deployed which was a result of using the wrong URL for the admin page. I have corrected this now and created a new url path that will allow any user to click on the admin link without it breaking.
+- Another bug was I didn't use CRUD properly, where the user can create, read any booking but only had the option to cancel a booking or put a message to the super user if they wished to edit/cancel a booking. Now I have removed the cancellation model as was unnecessary and changed the function for the cancel booking, so a user can cancel their own booking without an approval from the super user. Also, I have created an edit booking where the user can if they wish edit one of their own bookings by creating a new reservation which will overwrite the old one. These two amendments should allow for a complete CRUD.
 
 ## Un fixed bugs ##
 
@@ -313,7 +313,7 @@ from datetime import timedelta, datetime to make everything work in this functio
 - Removed the DISABLE_COLLECTSTATIC 1
 - Deployed branch to main in Heroku 
 
-The live link can be found here - 
+The live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu97.gitpod.io/home
 
 ## Credits ##
 
