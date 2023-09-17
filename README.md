@@ -1,6 +1,6 @@
 # Slice of Spice #
 
-The Live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu97.gitpod.io/home
+The Live link can be found here - https://sliceofspice.herokuapp.com/home
 
 Slice of Spice website offers a restaurant booking system for the Slice of Spice restaurant and provides the user with navigation such as home/about us, menu, gallery, contact, and a user authentication for sign in/log in (and when logged in a sign out and a reservations page for that user is displayed in the navigation). The site is targeted for any user to explore the restaurant and understand if its somewhere they would like to go an eat. If so they have the opportunity to book a table with this restaurant but only if they sign up to become a member (which allows the super user to have details of the customer but also allows the user to have their own reservations page which they can browse and check which bookings they have, plus if a user's wishes to they can either cancel or edit one of their current reservations.).
 
@@ -313,7 +313,7 @@ from datetime import timedelta, datetime to make everything work in this functio
 - Removed the DISABLE_COLLECTSTATIC 1
 - Deployed branch to main in Heroku 
 
-The live link can be found here - https://8000-huddy2022-sliceofspice-724f0pui3mj.ws-eu97.gitpod.io/home
+The live link can be found here - https://sliceofspice.herokuapp.com/home
 
 ## Credits ##
 
